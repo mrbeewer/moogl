@@ -1,47 +1,142 @@
+<div class="ui stackable two column grid">
 
-<div id="location_name"></div>
-<div id="location_image"></div>
-<div id="location_address"></div>
-<div id="location_hours">Open</div>
-<div id="location_phone"></div>
-<div id="location_website"></div>
-<div id="location_price">Price</div>
-<div id="location_byob">BYOB</div>
-<div id="location_alcohol">Alcohol</div>
-<div id="location_latenight">Late Night</div>
-<div id="location_outdoor">Outdoor</div>
-<div id="location_challenges">Challenges</div>
-<div id="location_allergies">Allergies</div>
-<div id="location_burgers">Burgers</div>
-<div id="location_sides">Sides</div>
+  <div class="column">
+    <h1 id="location_name" class=""></h1>
+    <div id="location_price" class="">
+      <h4 id="location_price" class="zero_dollar price">$</h4>
+      <h4 id="location_price" class="one_dollar price">$</h4>
+      <h4 id="location_price" class="two_dollar price">$</h4>
+      <h4 id="location_price" class="three_dollar price">$</h4>
+    </div>
+    <div id="location_address" class="column">
+      THIS WILL BE THE ADDRESS
+    </div>
+  </div>
 
-<div id="location_price" class="0_dollar">$</div>
-<div id="location_price" class="1_dollar">$</div>
-<div id="location_price" class="2_dollar">$</div>
-<div id="location_price" class="3_dollar">$</div>
+  <div id="location_image" class="center aligned column">
+    THIS WILL BE THE IMAGE
+  </div>
 
+</div>
 
-<button class="ui icon button">
-  <i class="minus icon">THIS IS A BUTTON</i>
-</button>
-<!-- <i class="minus icon"></i>
-<i class="checkmark icon"></i> -->
-<!-- <div id="location_foodtruck">Food Truck</div> -->
-<div id="location_foodtruck" class="yes">-</div>
-<div id="location_foodtruck" class="no">-</div>
+<div class="ui padded stackable three column divided grid" style="position: relative">
 
-<div id="location_foodtruck" class="yes">-</div>
-<div id="location_foodtruck" class="no">-</div>
+  <h5 id="location_phone" class="column"></h5>
 
-<div id="location_foodtruck" class="yes">-</div>
-<div id="location_foodtruck" class="no">-</div>
+  <div class="ui vertical divider"></div>
 
-<div id="location_foodtruck" class="yes">-</div>
-<div id="location_foodtruck" class="no">-</div>
+  <h5 id="location_hours" class="column"></h5>
 
-<div id="location_foodtruck" class="yes">-</div>
-<div id="location_foodtruck" class="no">-</div>
+  <div class="ui vertical divider"></div>
 
+  <h5 id="location_website" class="column"></h5>
+
+</div>
+
+<div class="ui stackable four column celled grid">
+
+  <div class="row">
+    <div class="four wide column">
+      <button id="location_byob" class="fluid ui toggle button">BYOB</button>
+    </div>
+
+    <div class="four wide column">
+      <button id="location_alcohol" class="fluid ui toggle button">ALCOHOL</button>
+    </div>
+
+    <div class="four wide column">
+      <button  id="location_latenight" class="fluid ui toggle button">LATE NIGHT</button>
+    </div>
+
+    <div class="four wide column">
+      <button id="location_outdoor" class="fluid ui toggle button">OUTDOOR</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="ui stackable grid">
+  <!-- left column for secondary criteria -->
+  <div class="ten wide column">
+    <!-- secondary search criteria -->
+    <div class="ui celled grid">
+      <div id="location_challenges" class="row">
+
+        <div class="ten wide column">
+          CHALLENGES
+        </div>
+        <div class="six wide column">
+          <div id="location_foodtruck" class="yes">-</div>
+          <div id="location_foodtruck" class="no">-</div>
+        </div>
+
+      </div>
+      <div id="location_allergies" class="row">
+
+        <div class="ten wide column">
+          ALLERGIES
+        </div>
+        <div class="six wide column">
+          <div id="location_foodtruck" class="yes">-</div>
+          <div id="location_foodtruck" class="no">-</div>
+        </div>
+
+      </div>
+      <!-- <div id="location_burgers" class="row"> -->
+
+        <div class="ten wide column">
+          <div id="burgerzzz">BURGERS
+            <div id="location_burgers" class="ui modal">
+              Extra Burger Copy
+              <script type='text/template' id="burger-template">
+                <ul>
+                  <li>Name: <%= name %></li>
+                  <li>Image: <%= image %></li>
+                  <li>Description: <%= description %></li>
+                  <div id="meat_list">
+                    <li>List of Meats:</li>
+                  </div>
+                  <li>Rating: <%= rating %></li>
+                  <li>Veggie: <%= veggie %></li>
+                </ul>
+              </script>
+            <script type="text/template" id="meat-template">
+              <ul>
+                <li>Angus: <%= angus %></li>
+                <li>Bison: <%= bison %></li>
+                <li>Elk: <%= elk %></li>
+                <li>Grassfed: <%= grassfed %></li>
+                <li>Kobe: <%= kobe %></li>
+                <li>Lamb: <%= lamb %></li>
+                <li>Turkey: <%= turkey %></li>
+            </script>
+          </div>
+        </div>
+        <div class="six wide column">
+          <div id="location_foodtruck" class="yes">-</div>
+          <div id="location_foodtruck" class="no">-</div>
+        </div>
+
+      </div>
+      <div id="location_sides" class="row">
+
+        <div class="ten wide column">
+          SIDES
+        </div>
+        <div class="six wide column">
+          <div id="location_foodtruck" class="yes">-</div>
+          <div id="location_foodtruck" class="no">-</div>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- end of secondary search criteria -->
+  </div>
+  <!-- end of left column -->
+
+<div class="ui six wide column" style="background-color: grey">
+</div>
 
 
 
@@ -50,3 +145,5 @@
 
 <script src="/javascripts/location_ajax.js"></script>
 <script src="/javascripts/location_detail.js"></script>
+<script src="/javascripts/burger_detail.js">
+</script>
