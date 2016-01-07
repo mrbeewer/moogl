@@ -1,12 +1,12 @@
 <section id="primary-search">
-  <li><button class="ui button" type="button" value="challenges">Challenges</button></li>
-  <li><button type="button" value="foodtruck">Foodtrucks</button></li>
-  <li><button type="button" value="veggie">Vegetarian/Vegan</button></li>
-  <li><button type="button" value="allergies">Allergies</button></li>
-  <li><button type="button" value="meats">Choose Your Meat</button></li>
-  <li><button type="button" value="top">Top Burgers</button></li>
-  <li><button type="button" value="sides">Search by sides</button></li>
-  <li><button type="button" value="cost">Search by cost</button></li>
+  <li><button class="ui button" type="button" value="challenges">Burger Challenges</button></li>
+  <li><button class="ui button" type="button" value="foodtruck">Foodtrucks</button></li>
+  <li><button class="ui button" type="button" value="veggie">Vegetarian/Vegan</button></li>
+  <li><button class="ui button" type="button" value="allergies">Allergies</button></li>
+  <li><button class="ui button" type="button" value="meats">Choose Your Meat</button></li>
+  <li><button class="ui button" type="button" value="top">Top Burgers</button></li>
+  <li><button class="ui button" type="button" value="sides">Search by sides</button></li>
+  <li><button class="ui button" type="button" value="cost">Search by cost</button></li>
 </section>
 
 <section id="refined-search">
@@ -14,12 +14,15 @@
 </section>
 
 <script type="text/javascript">
+
   var searchBtns = document.getElementsByTagName('button');
   for (var i = 0; i < searchBtns.length; i++) {
     searchBtns[i].addEventListener('click', function() {
       var primary = document.getElementById('primary-search');
       var selection = this.value;
       selection = selection.toLowerCase();
+      var criteria = {};
+      criteria[selection] = true;
       primary.style.display = "none";
 
       var xhr = new XMLHttpRequest();
@@ -39,30 +42,73 @@
           var template = document.getElementById('refined-search-template').innerHTML;
           var templateScript = _.template(template);
           var html = templateScript(context);
-          var p = document.createElement('p');
-          p.innerHTML = html;
+          var div = document.createElement('div');
+          div.innerHTML = html;
           var second = document.getElementById('refined-search');
-          second.appendChild(p);
+          second.appendChild(div);
           second.style.display = "block";
+          addDefaults(criteria);
         }
       };
       xhr.send(null);
     });
   }
+
+  var addDefaults = function(obj) {
+    var btns = document.getElementsByClassName('defaults');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function() {
+        var selection = this.name;
+        if (this.value == "true") {
+          this.value = false;
+          console.log(this.value);
+        } else {
+          this.value = true;
+          console.log(this.value);
+        }
+        this.classList.toggle("selected");
+
+        console.log(selection);
+      });
+    }
+  }
 </script>
 
 <script type="text/template" id="refined-search-template">
-  <h1> <%= name %> </h1>
-  <img src="<%= imageURL %>" alt="" id="detailSearchImg"/>
+
+  <img id="search-img" src="<%= imageURL %>" alt="" id="detailSearchImg"/>
+  <h1 id="title"> <%= name %> </h1>
   <hr>
-  <p>
-    <%= description %>
-  </p>
-  <div>
-    <% for (var crit in defaultCriteria) { %>
-      <% for (var key in defaultCriteria[crit]) { %>
-        <li><%= key + ": " + defaultCriteria[crit][key] %></li>
-      <% } %>
-    <% } %>
+  <div id="search-desc" class="ui raised segments">
+    <p>
+      <%= description %>
+    </p>
+  </div>
+  <div class="ui raised segment">
+  <div id="defaults-cont" class="ui stackable four column grid">
+    <div class="column center aligned">
+      <button class="circular ui toggle button defaults" name="alcohol" value="false">
+        Alcohol
+      </button>
+    </div>
+    <div class="column center aligned">
+      <button class="circular ui toggle button defaults" name="byob" value="false">
+        B.Y.O.B.
+      </button>
+    </div>
+    <div class="column center aligned">
+      <button class="circular ui toggle button defaults" name="latenight" value="false">
+        Open late
+      </button>
+    </div>
+    <div class="column center aligned">
+      <button class="circular ui toggle button defaults" name="outdoor" value="false">
+        Outdoor Seating
+      </button>
+    </div>
+  </div>
+</div>
+  <div id="search-btn" class="ui raised segment">
+    <button class="ui green inverted button">Search</button>
   </div>
 </script>
