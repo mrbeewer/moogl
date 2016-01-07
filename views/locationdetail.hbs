@@ -82,10 +82,35 @@
         </div>
 
       </div>
-      <div id="location_burgers" class="row">
+      <!-- <div id="location_burgers" class="row"> -->
 
         <div class="ten wide column">
-          BURGERS
+          <div id="burgerzzz">BURGERS
+            <div id="location_burgers" class="ui modal">
+              Extra Burger Copy
+              <script type='text/template' id="burger-template">
+                <ul>
+                  <li>Name: <%= name %></li>
+                  <li>Image: <%= image %></li>
+                  <li>Description: <%= description %></li>
+                  <div id="meat_list">
+                    <li>List of Meats:</li>
+                  </div>
+                  <li>Rating: <%= rating %></li>
+                  <li>Veggie: <%= veggie %></li>
+                </ul>
+              </script>
+            <script type="text/template" id="meat-template">
+              <ul>
+                <li>Angus: <%= angus %></li>
+                <li>Bison: <%= bison %></li>
+                <li>Elk: <%= elk %></li>
+                <li>Grassfed: <%= grassfed %></li>
+                <li>Kobe: <%= kobe %></li>
+                <li>Lamb: <%= lamb %></li>
+                <li>Turkey: <%= turkey %></li>
+            </script>
+          </div>
         </div>
         <div class="six wide column">
           <div id="location_foodtruck" class="yes">-</div>
@@ -109,49 +134,9 @@
     <!-- end of secondary search criteria -->
   </div>
   <!-- end of left column -->
-<div class="six wide column">
-    STUFF WILL GO HERE
-  <div class="row">
-    <div id="location_challenges">Challenges</div>
-    <div id="location_allergies">Allergies</div>
-    <div id="burgerzzz">Burgers
-      <div id="location_burgers" class="ui modal">
-        <script type='text/template' id="burger-template">
-          <ul>
-            <li>Name: <%= name %></li>
-            <li>Image: <%= image %></li>
-            <li>Description: <%= description %></li>
-            <div id="meat_list">
-              <li>List of Meats:</li>
-            </div>
-            <li>Rating: <%= rating %></li>
-            <li>Veggie: <%= veggie %></li>
-          </ul>
-        </script>
-      </div>
-    </div>
-    <script type="text/template" id="meat-template">
-      <ul>
-        <li>Angus: <%= angus %></li>
-        <li>Bison: <%= bison %></li>
-        <li>Elk: <%= elk %></li>
-        <li>Grassfed: <%= grassfed %></li>
-        <li>Kobe: <%= kobe %></li>
-        <li>Lamb: <%= lamb %></li>
-        <li>Turkey: <%= turkey %></li>
-    </script>
-    <div id="location_sides">Sides</div>
-  </div>
+
+<div class="ui six wide column" style="background-color: grey">
 </div>
-
-
-
-<!-- <i class="minus icon"></i>
-<i class="checkmark icon"></i> -->
-<!-- <div id="location_foodtruck">Food Truck</div> -->
-
-
-
 
 
 

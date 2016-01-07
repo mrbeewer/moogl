@@ -27,7 +27,9 @@ function addBurgerDetails(data) {
 function showBurgerDetails(){
   console.log('Burgers Belong Here');
   $("#burgerzzz").click(function() {
-    console.log('Clicks are fucking annoying');
+    // console.log('Clicks are fucking annoying');
+    // var modal = $(".ui.modal");
+    // console.log(modal);
     $(".ui.modal").modal("show");
   });
 }
