@@ -89,10 +89,28 @@
     <div id="location_burgers">Burgers
       <script type='text/template' id="burger-template">
         <ul>
+          <li>Name: <%= name %></li>
+          <li>Image: <%= image %></li>
           <li>Description: <%= description %></li>
+          <div id="meat_list">
+            <li>List of Meats:</li>
+          </div>
+          <li>Rating: <%= rating %></li>
+          <li>Veggie: <%= veggie %></li>
         </ul>
       </script>
     </div>
+    <script type="text/template" id="meat-template">
+      <ul>
+        <li>Angus: <%= angus %></li>
+        <li>Bison: <%= bison %></li>
+        <li>Elk: <%= elk %></li>
+        <li>Grassfed: <%= grassfed %></li>
+        <li>Kobe: <%= kobe %></li>
+        <li>Lamb: <%= lamb %></li>
+        <li>Turkey: <%= turkey %></li>
+    </script>
+
     <div id="location_sides">Sides</div>
   </div>
 
