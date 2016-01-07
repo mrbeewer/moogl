@@ -1,14 +1,12 @@
 <section id="primary-search">
-  <ul>
-    <li><input type="button" value="Challenges"></li>
-    <li><input type="button" value="Foodtruck"></li>
-    <li><input type="button" value="Veggie"></li>
-    <li><input type="button" value="Allergies"></li>
-    <li><input type="button" value="Meats"></li>
-    <li><input type="button" value="Top Burgers"></li>
-    <li><input type="button" value="Sides"></li>
-    <li><input type="button" value="Cost"></li>
-  </ul>
+  <li><button class="ui button" type="button" value="challenges">Burger Challenges</button></li>
+  <li><button class="ui button" type="button" value="foodtruck">Foodtrucks</button></li>
+  <li><button class="ui button" type="button" value="veggie">Vegetarian/Vegan</button></li>
+  <li><button class="ui button" type="button" value="allergies">Allergies</button></li>
+  <li><button class="ui button" type="button" value="meats">Choose Your Meat</button></li>
+  <li><button class="ui button" type="button" value="top">Top Burgers</button></li>
+  <li><button class="ui button" type="button" value="sides">Search by sides</button></li>
+  <li><button class="ui button" type="button" value="cost">Search by cost</button></li>
 </section>
 
 <section id="refined-search">
@@ -17,12 +15,15 @@
 
 
 <script type="text/javascript">
-  var searchBtns = document.getElementsByTagName('input');
-  console.log(searchBtns);
+
+  var searchBtns = document.getElementsByTagName('button');
   for (var i = 0; i < searchBtns.length; i++) {
-    console.log(searchBtns[i]);
     searchBtns[i].addEventListener('click', function() {
       var primary = document.getElementById('primary-search');
+      var selection = this.value;
+      selection = selection.toLowerCase();
+      var criteria = {};
+      criteria[selection] = true;
       primary.style.display = "none";
 
       var xhr = new XMLHttpRequest();
@@ -32,39 +33,98 @@
           return;
         }
         if (xhr.status == 200) {
-          var response = JSON.parse(xhr.responseText)[0]["foodtruck"][0];
-          console.log(response.name + "\n" + response.description);
-          console.log(typeof(response.name) + "\n" + typeof(response.description));
+          var response = JSON.parse(xhr.responseText)[0][selection][0];
           var context = {
             "name" : response.name,
             "description" : response.description,
+            "defaultCriteria" : response.defaultCriteria,
+            "imageURL" : response.imageURL
           };
           var template = document.getElementById('refined-search-template').innerHTML;
           var templateScript = _.template(template);
           var html = templateScript(context);
-          var p = document.createElement('p');
-          p.innerHTML = html;
+          var div = document.createElement('div');
+          div.innerHTML = html;
           var second = document.getElementById('refined-search');
-          second.appendChild(p);
+          second.appendChild(div);
           second.style.display = "block";
+          addDefaults(criteria);
         }
       };
       xhr.send(null);
     });
   }
+
+  var addDefaults = function(obj) {
+    var btns = document.getElementsByClassName('defaults');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function() {
+        var selection = this.name;
+        if (this.value == "true") {
+          this.value = false;
+        } else {
+          this.value = true;
+        }
+        this.classList.toggle("selected");
+
+        document.getElementById('search-btn').addEventListener("click", function() {
+          getSearchCriteria(obj);
+        });
+      });
+    }
+  }
+
+  var getSearchCriteria = function(obj) {
+    var checkBtns = document.getElementsByClassName('defaults');
+    for (var i = 0; i < checkBtns.length; i++) {
+      obj[checkBtns[i].name] = checkBtns[i].value;
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/q", true);
+    xhr.onload = function() {
+
+    };
+    xhr.send();
+    console.log(obj);
+  };
 </script>
 
 
 <script type="text/template" id="refined-search-template">
-  <h1> <%= name %> </h1>
-  <img src="/images/dummy.png" alt="" id="detailSearchImg"/>
-  <hr>
-  <p>
-    <%= description %>
-  </p>
-  <div>
-    <ul>
-      <li>List search criteria</li>
-    </ul>
+
+  <img id="search-img" src="<%= imageURL %>" alt="" id="detailSearchImg"/>
+  <h1 id="title"> <%= name %> </h1>
+  <!-- <hr> -->
+  <div id="search-desc" class="ui raised segments">
+    <p>
+      <%= description %>
+    </p>
+  </div>
+  <div class="ui raised segment">
+  <div id="defaults-cont" class="ui stackable four column grid">
+    <div class="column center aligned">
+      <button class="circular ui toggle button defaults" name="alcohol" value="false">
+        Alcohol
+      </button>
+    </div>
+    <div class="column center aligned">
+      <button class="circular ui toggle button defaults" name="byob" value="false">
+        B.Y.O.B.
+      </button>
+    </div>
+    <div class="column center aligned">
+      <button class="circular ui toggle button defaults" name="latenight" value="false">
+        Open late
+      </button>
+    </div>
+    <div class="column center aligned">
+      <button class="circular ui toggle button defaults" name="outdoor" value="false">
+        Outdoor Seating
+      </button>
+    </div>
+  </div>
+</div>
+  <div class="ui raised segment">
+    <button id="search-btn" class="ui button">Search</button>
   </div>
 </script>

@@ -7,20 +7,21 @@
     <script src="/javascripts/underscore.js"></script>
     <script src="/javascripts/backbone.js"></script>
     <link rel="stylesheet" href="/semantic.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/stylesheets/style.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/stylesheets/locationStyle.css" media="screen" title="no title" charset="utf-8">
     <script src="/semantic.min.js"></script>
   </head>
   <body>
+    <section id="main-wrapper">
+      {{#if user}}
+        Welcome, {{user.username}}!
+      {{else}}
+        Hey! You should <a href="/user/login">Login</a> or <a href="/user/register">Register</a>
+      {{/if}}
 
-    {{#if user}}
-      Welcome, {{user.username}}!
-    {{else}}
-      Hey! You should <a href="/user/login">Login</a> or <a href="/user/register">Register</a>
-    {{/if}}
+      <hr>
 
-    <hr>
-
-    {{{body}}}
-
+      {{{body}}}
+    </section>
   </body>
 </html>
