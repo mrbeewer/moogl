@@ -89,4 +89,24 @@ router.delete('/:id', function(req, res) {
   });
 });
 
+router.get('/set-session/:id', function(req, res, next) {
+  req.session.search = req.params.id;
+  console.log("session saved");
+  console.log(req.session.search);
+  res.json({message: "data saved"});
+});
+
+router.post('/set-session', function(req, res, next) {
+  req.session.search = req.body;
+  console.log("session saved");
+  console.log(req.session.search);
+  res.json({message: "data saved"});
+});
+
+router.get('/get-session', function(req, res, next) {
+  // req.session. = req.params.id;
+  // console.log(req.session.search);
+  res.json(req.session.search);
+});
+
 module.exports = router;

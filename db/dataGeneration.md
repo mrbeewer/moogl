@@ -4,7 +4,6 @@ North-West: 42.931036, -87.738031
 South-West: 41.826887, -87.738031
 South-East: 41.828300, -87.614190
 
-
 Range:
 LAT   41.826887 <->  42.931036
 LNG  -87.614190 <-> -87.738031
@@ -54,7 +53,7 @@ $(document).ready(function() {
 });
 ```
 
-"https://pixabay.com/static/uploads/photo/2014/10/23/18/05/burger-500054_150.jpg", "https://pixabay.com/static/uploads/photo/2015/07/01/07/06/burger-827309_150.jpg", "https://pixabay.com/static/uploads/photo/2015/07/01/07/06/burger-827310_150.jpg", "https://pixabay.com/static/uploads/photo/2015/07/01/07/06/burger-827308_150.jpg", "https://pixabay.com/static/uploads/photo/2015/10/14/13/55/burgers-987644_150.jpg", "https://pixabay.com/static/uploads/photo/2015/10/19/14/05/burger-996037_150.jpg", "https://pixabay.com/static/uploads/photo/2015/09/20/15/02/pizza-burger-948403_150.jpg", "https://pixabay.com/static/uploads/photo/2015/09/20/02/31/pizza-pocket-947899_150.jpg", "https://pixabay.com/static/uploads/photo/2015/09/22/15/42/burger-951896_150.jpg", "https://pixabay.com/static/uploads/photo/2015/07/30/18/23/burger-868145_150.jpg", "https://pixabay.com/static/uploads/photo/2015/09/18/10/11/burger-945321_150.jpg", "https://pixabay.com/static/uploads/photo/2015/10/31/12/19/burger-1015438_150.jpg", "https://pixabay.com/static/uploads/photo/2015/04/20/13/25/burger-731298_150.jpg", "https://pixabay.com/static/uploads/photo/2015/08/04/10/48/burger-874531_150.jpg", "https://pixabay.com/static/uploads/photo/2015/07/19/18/47/burger-851847_150.jpg", "https://pixabay.com/static/uploads/photo/2015/06/08/15/13/hamburger-801942_150.jpg", "https://pixabay.com/static/uploads/photo/2015/10/31/12/20/burger-1015440_150.jpg", "https://pixabay.com/static/uploads/photo/2015/09/01/03/42/food-916397_150.jpg", "https://pixabay.com/static/uploads/photo/2015/10/13/21/09/sandwich-986799_150.jpg", "https://pixabay.com/static/uploads/photo/2015/09/18/10/12/burger-945322_150.jpg"
+
 
 
 
