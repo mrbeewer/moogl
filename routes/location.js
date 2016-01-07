@@ -33,7 +33,19 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/detail', function(req, res, next) {
-  res.render('login');
+  res.render('locationdetail');
+});
+
+var locationID = "568d5f825d5455088a340ff1";
+
+router.get('/detail/data', function(req, res, next) {
+  model.find({ _id: locationID },function(err, location) {
+    if (err) {
+      res.json(buildErrorResponse(err));
+    } else {
+      res.json(location);
+    }
+  });
 });
 
 router.get('/query', function(req, res, next) {
