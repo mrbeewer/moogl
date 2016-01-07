@@ -21,6 +21,7 @@ function updateLocationDetail(data){
   var location = data[0];
   var keys = Object.keys(location);
 
+  console.log(location);
   $("#location_name").html(location.name);
   $("#location_address").html(location.address);
   $("#location_phone").html(location.phone);
@@ -58,17 +59,19 @@ function updateLocationDetail(data){
   location.sides
   location.burgers
 
+  addBurgerDetails(location.burgers);
+
 };
 
 function setToggleOn(button){
   $(button).removeClass("inactive");
   $(button).addClass("active");
-}
+};
 
 function setToggleOff(button){
   $(button).removeClass("active");
   $(button).addClass("inactive");
-}
+};
 
 function setYes(item){
   $("#location_" + item + ".yes").html("X");

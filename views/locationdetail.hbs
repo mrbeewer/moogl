@@ -109,8 +109,38 @@
     <!-- end of secondary search criteria -->
   </div>
   <!-- end of left column -->
-  <div class="six wide column">
+<div class="six wide column">
     STUFF WILL GO HERE
+  <div class="row">
+    <div id="location_challenges">Challenges</div>
+    <div id="location_allergies">Allergies</div>
+    <div id="burgerzzz">Burgers
+      <div id="location_burgers" class="ui modal">
+        <script type='text/template' id="burger-template">
+          <ul>
+            <li>Name: <%= name %></li>
+            <li>Image: <%= image %></li>
+            <li>Description: <%= description %></li>
+            <div id="meat_list">
+              <li>List of Meats:</li>
+            </div>
+            <li>Rating: <%= rating %></li>
+            <li>Veggie: <%= veggie %></li>
+          </ul>
+        </script>
+      </div>
+    </div>
+    <script type="text/template" id="meat-template">
+      <ul>
+        <li>Angus: <%= angus %></li>
+        <li>Bison: <%= bison %></li>
+        <li>Elk: <%= elk %></li>
+        <li>Grassfed: <%= grassfed %></li>
+        <li>Kobe: <%= kobe %></li>
+        <li>Lamb: <%= lamb %></li>
+        <li>Turkey: <%= turkey %></li>
+    </script>
+    <div id="location_sides">Sides</div>
   </div>
 </div>
 
@@ -130,3 +160,5 @@
 
 <script src="/javascripts/location_ajax.js"></script>
 <script src="/javascripts/location_detail.js"></script>
+<script src="/javascripts/burger_detail.js">
+</script>
