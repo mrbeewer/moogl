@@ -86,7 +86,13 @@
   <div class="row">
     <div id="location_challenges">Challenges</div>
     <div id="location_allergies">Allergies</div>
-    <div id="location_burgers">Burgers</div>
+    <div id="location_burgers">Burgers
+      <script type='text/template' id="burger-template">
+        <ul>
+          <li>Description: <%= description %></li>
+        </ul>
+      </script>
+    </div>
     <div id="location_sides">Sides</div>
   </div>
 
@@ -120,3 +126,5 @@
 
 <script src="/javascripts/location_ajax.js"></script>
 <script src="/javascripts/location_detail.js"></script>
+<script src="/javascripts/burger_detail.js">
+</script>

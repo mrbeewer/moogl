@@ -9,6 +9,7 @@ function updateLocationDetail(data){
   var location = data[0];
   var keys = Object.keys(location);
 
+
   $("#location_name").html(location.name);
   $("#location_address").html(location.address);
   $("#location_phone").html(location.phone);
@@ -43,6 +44,7 @@ function updateLocationDetail(data){
   location.sides
   location.burgers
 
+
   // var arr = [];
   // var arr = Object.keys(location);
   //
@@ -66,6 +68,7 @@ function updateLocationDetail(data){
 //
 //   $(object.container).append(object.item);
 //
+  addBurgerDetails(location.burgers);
 }
 
 function setYes(item){

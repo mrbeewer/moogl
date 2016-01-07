@@ -36,7 +36,7 @@ router.get('/detail', function(req, res, next) {
   res.render('locationdetail');
 });
 
-var locationID = "568d5f825d5455088a340ff1";
+var locationID = "568d42205d39631279404a8b";
 
 router.get('/detail/data', function(req, res, next) {
   model.find({ _id: locationID },function(err, location) {
