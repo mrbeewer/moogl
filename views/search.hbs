@@ -1,0 +1,68 @@
+<section id="primary-search">
+  <ul>
+    <li><input type="button" value="Challenges"></li>
+    <li><input type="button" value="Foodtruck"></li>
+    <li><input type="button" value="Veggie"></li>
+    <li><input type="button" value="Allergies"></li>
+    <li><input type="button" value="Meats"></li>
+    <li><input type="button" value="Top Burgers"></li>
+    <li><input type="button" value="Sides"></li>
+    <li><input type="button" value="Cost"></li>
+  </ul>
+</section>
+
+<section id="refined-search">
+
+</section>
+
+<script type="text/javascript">
+  var searchBtns = document.getElementsByTagName('input');
+  console.log(searchBtns);
+  for (var i = 0; i < searchBtns.length; i++) {
+    console.log(searchBtns[i]);
+    searchBtns[i].addEventListener('click', function() {
+      var primary = document.getElementById('primary-search');
+      primary.style.display = "none";
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "/search", true);
+      xhr.onload = function() {
+        if (xhr.readyState != XMLHttpRequest.DONE) {
+          return;
+        }
+        if (xhr.status == 200) {
+          var response = JSON.parse(xhr.responseText)[0]["foodtruck"][0];
+          console.log(response.name + "\n" + response.description);
+          console.log(typeof(response.name) + "\n" + typeof(response.description));
+          var context = {
+            "name" : response.name,
+            "description" : response.description,
+          };
+          var template = document.getElementById('refined-search-template').innerHTML;
+          var templateScript = _.template(template);
+          var html = templateScript(context);
+          var p = document.createElement('p');
+          p.innerHTML = html;
+          var second = document.getElementById('refined-search');
+          second.appendChild(p);
+          second.style.display = "block";
+        }
+      };
+      xhr.send(null);
+    });
+  }
+</script>
+
+<script type="text/template" id="refined-search-template">
+  <h1> <%= name %> </h1>
+  <img src="/images/dummy.png" alt="" id="detailSearchImg"/>
+  <hr>
+  <p>
+    <%= description %>
+  </p>
+  <div>
+    <ul>
+      <li>List search criteria</li>
+    </ul>
+  </div>
+</script>
