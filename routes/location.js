@@ -106,7 +106,7 @@ router.post('/q', function(req, res, next) {
       console.log("===============")
       console.log("Results");
       console.log(locations);
-      res.json({message: "it worked"});
+      res.json(locations);
       // res.json(locations);
       // console.log(locations);
       // console.log("stringify now");
@@ -131,7 +131,7 @@ router.post('/set-session', function(req, res, next) {
   req.session.search = req.body;
   console.log("session saved");
   console.log(req.session.search);
-  res.json({message: "data saved"});
+  res.redirect('/location/map');
 });
 
 router.get('/get-session', function(req, res, next) {
