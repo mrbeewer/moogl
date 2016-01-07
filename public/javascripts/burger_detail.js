@@ -4,12 +4,17 @@
 
 
 function addBurgerDetails(data) {
-  var burger_data = data;
-  console.log(burger_data);
-  burger_view = $("#burger-template").html();
-  $("#location_burgers").append(_.template(burger_view, burger_data));
+  var burger = data[0];
+  var keys = Object.keys(burger);
+  console.log(burger)
+  console.log(burger.description);
+
+  var burger_view = $("#burger-template").html();
+  var burger_template = _.template(burger_view);
+  var compileTemplate = burger_template(burger);
+  $("#location_burgers").append(compileTemplate);
 };
-// 
+//
 // console.log(location.burgers);
 //
 // for (var i = 0; i <= location.burgers; i++) {
