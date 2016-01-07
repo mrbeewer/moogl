@@ -1,126 +1,48 @@
-<!-- <script src="/javascripts/app.map.js" charset="utf-8"></script>
+// Note: This example requires that you consent to location sharing when
+// prompted by your browser. If you see the error "The Geolocation service
+// failed.", it means you probably did not give permission for the browser to
+// locate you.
 
-<div id="map"></div>-->
+function initMap() {
+  console.log("initMap called");
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 41.934365, lng: -87.631506},
+    zoom: 9
+  });
+  console.log(map);
 
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ8wDa0Y7m3dFsKwNaTPEsZD5AR3kq5Dc&callback=initMap"></script>
+  setMarkers(map);
 
+}
 
-  <div id="map" style="width:500px; height:300px"></div>
+  var contentString = '<div id="content">'+
+    '<div id="siteNotice">'+
+    '</div>'+
+    '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+    '<div id="bodyContent">'+
+    '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+    'sandstone rock formation in the southern part of the '+
+    'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+    'south west of the nearest large town, Alice Springs; 450&#160;km '+
+    '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+    'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+    'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+    'Aboriginal people of the area. It has many springs, waterholes, '+
+    'rock caves and ancient paintings. Uluru is listed as a World '+
+    'Heritage Site.</p>'+
+    '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+    'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+    '(last visited June 22, 2009).</p>'+
+    '</div>'+
+    '</div>';
 
-
-
-    <!-- <script>
-
-    // initialize();
-
-    // function initialize() {
-    //   google.maps.event.addDomListener(window, 'load', function() {
-    //     codeAddress('London');
-    // });
-    // }
-
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
-        });
-      }
-    </script> -->
-    <!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false">
-    </script> -->
-
-<!-- <div id="map"></div> -->
-
-
-<!-- <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ8wDa0Y7m3dFsKwNaTPEsZD5AR3kq5Dc&signed_in=true&callback=initMap"></script> -->
-
-<script type="text/javascript">
-
-  function initMap() {
-    console.log('initMap called');
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 41.934365, lng: -87.631506}, //chicago-ish
-      zoom: 9 // smaller is closer
-    });
-
-    setMarkers(map);
-  }
-
-
-  var data;
-
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "/location/q/foodtruck:true&latenight:true&byob:true&price:4", true);
-  xhr.onload = function() {
-    if (xhr.readyState != XMLHttpRequest.DONE) {
-      return;
-    }
-    if (xhr.status == 200) {
-      console.log("query successful");
-      var response = JSON.parse(xhr.responseText);
-      console.log(response);
-      data = response;
-      console.log(data);
-
-      value = JSON.stringify(data);
-
-      var setSession = new XMLHttpRequest();
-      setSession.open("POST", "/location/set-session", true);
-      setSession.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-       setSession.onreadystatechange = function () {
-           if (setSession.readyState == 4 && setSession.status == 200) {
-               console.log(setSession.responseText);
-           }
-       }
-       setSession.send(value);
-
-      };
-  };
-  xhr.send(null);
-
-
-  var mapData;
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "/location/get-session", true);
-  xhr.onload = function() {
-    if (xhr.readyState != XMLHttpRequest.DONE) {
-      return;
-    }
-    if (xhr.status == 200) {
-      console.log("query successful");
-      var response = JSON.parse(xhr.responseText);
-      console.log(response);
-      mapData = response;
-      console.log(mapData);
-    };
-  };
-  xhr.send(null);
-
-
-  //
-  // var setSession = new XMLHttpRequest();
-  // setSession.open("POST", "/location/set-session/", true);
-  // setSession.onload = function() {
-  //   if (setSession.readyState != XMLHttpRequest.DONE) {
-  //     return;
-  //   }
-  //   // if (setSession.status == 200) {
-  //   //   var response = JSON.parse(setSession.responseText);
-  //   //   console.log(response);
-  //   //   data = response;
-  //   //   console.log(data);
-  //   // }
-  // };
-  // setSession.send(JSON.stringify(data));
-
-
-
-
-
-
+  var beaches = [
+    ['Bondi Beach', -33.890542, 151.274856, "I'm Bondi Beach"],
+    ['Coogee Beach', -33.923036, 151.259052, "I'm Coogee Beach"],
+    ['Cronulla Beach', -34.028249, 151.157507, "I'm Cronulla Beach"],
+    ['Manly Beach', -33.80010128657071, 151.28747820854187, "I'm Manly Beach"],
+    ['Maroubra Beach', -33.950198, 151.259302, "I'm Maroubra Beach"]
+  ];
 
   var data = [ {
     "name": "Tom's Sandwiches",
@@ -249,11 +171,7 @@
     }
   }];
 
-
-
   console.log(data);
-  data = mapData
-
 
   var infoWindows = [];
 
@@ -264,7 +182,6 @@ function setMarkers(map) {
   var marker = [];
   for (var i = 0; i < data.length; i++) {
     var place = data[i];
-    console.log("call markerItem");
     marker[i] = new markerItem(place, map);
 
 
@@ -293,22 +210,22 @@ function setMarkers(map) {
   }
 }
 
-var markerItem = function(data, map) {
+var markerItem = function(beach, map) {
   // this.infoWindow = new google.maps.InfoWindow({
-  //   content: data[3],
+  //   content: beach[3],
   //   maxWidth: 200
   // });
   this.image = {
-    url: '/images/orange-pin.png',
+    url: 'orange-pin.png',
     size: new google.maps.Size(30, 44)
     // origin: new google.maps.Point(0,0),
     // anchor: new google.maps.Point(0, 0)
   };
 
   this.marker = new google.maps.Marker({
-    position: {lat: data.coords[1], lng: data.coords[0]},
+    position: {lat: beach.coords[1], lng: beach.coords[0]},
     map: map,
-    title: data.name,
+    title: beach.name,
     icon: this.image
   });
 
@@ -318,17 +235,17 @@ var markerItem = function(data, map) {
     for (var i=0;i<infoWindows.length;i++) {
        infoWindows[i].close();
     }
-    console.log(data[0]);
+    console.log(beach[0]);
     var infowindow = new google.maps.InfoWindow();
     var content = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">' + data.name + '</h1>'+
+      '<h1 id="firstHeading" class="firstHeading">' + beach.name + '</h1>'+
       '<div id="address">'+
-      '<p>' + data.address + '</p>' +
-      '<p>' + data.burgers[0].name + '</p>' +
-      '<p>Rating: ' + data.burgers[0].rating + ' out of 4</p>' +
-      '<p><img src="' + data.burgers[0].image + '" alt="" /></p>' +
+      '<p>' + beach.address + '</p>' +
+      '<p>' + beach.burgers[0].name + '</p>' +
+      '<p>Rating: ' + beach.burgers[0].rating + ' out of 4</p>' +
+      '<p><img src="' + beach.burgers[0].image + '" alt="" /></p>' +
       '<input type="button" value="Button">';
     infowindow.setContent(content);
     infoWindows.push(infowindow);
@@ -365,6 +282,3 @@ var markerItem = function(data, map) {
 //                         'Error: The Geolocation service failed.' :
 //                         'Error: Your browser doesn\'t support geolocation.');
 // }
-
-
-</script>

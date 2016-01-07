@@ -59,8 +59,36 @@ router.get('/q/:id', function(req, res, next) {
       res.json(buildErrorResponse(err));
     } else {
       res.json(locations);
+      // console.log(locations);
+      // console.log("stringify now");
+      // console.log(JSON.stringify(locations));
+      // res.render('map', { mapData: JSON.stringify(locations) });
     }
   });
+});
+
+router.get('/map', function(req, res, next) {
+  res.render('map');
+});
+
+router.get('/set-session/:id', function(req, res, next) {
+  req.session.search = req.params.id;
+  console.log("session saved");
+  console.log(req.session.search);
+  res.json({message: "data saved"});
+});
+
+router.post('/set-session', function(req, res, next) {
+  req.session.search = req.body;
+  console.log("session saved");
+  console.log(req.session.search);
+  res.json({message: "data saved"});
+});
+
+router.get('/get-session', function(req, res, next) {
+  // req.session. = req.params.id;
+  // console.log(req.session.search);
+  res.json(req.session.search);
 });
 
 
