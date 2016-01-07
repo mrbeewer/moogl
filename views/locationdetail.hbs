@@ -1,67 +1,104 @@
-<div class="ui horizontal segments">
+<div class="ui stackable two column grid">
 
-  <div class="ui segments">
-    <h1 id="location_name" class="ui segment">
+  <div class="column">
+    <h1 id="location_name" class="">
       NAME
     </h1>
-    <div id="location_price" class="ui segment">
+    <div id="location_price" class="">
       <div id="location_price" class="zero_dollar price">$</div>
       <div id="location_price" class="one_dollar price">$</div>
       <div id="location_price" class="two_dollar price">$</div>
       <div id="location_price" class="three_dollar price">$</div>
     </div>
+    <div id="location_address" class="column">
+      THIS WILL BE THE ADDRESS
+    </div>
   </div>
 
-  <div id="location_image" class="ui segment">
+  <div id="location_image" class="center aligned column">
     THIS WILL BE THE IMAGE
   </div>
 
 </div>
 
-<div class="ui horizontal segments">
+<div class="ui stackable three column divided grid" style="position: relative">
 
-  <div id="location_address" class="ui segment">
-    THIS WILL BE THE ADDRESS
+  <div id="location_hours" class="column">
   </div>
-  <div id="location_hours" class="ui segment">
-    <!-- close
-    closing
-    days
-    open -->
+
+  <div class="ui vertical divider"></div>
+
+  <div id="location_phone" class="column">
   </div>
-  <div id="location_phone" class="ui segment">
-    THIS WILL BE THE PHONE NUMBER
+
+  <div class="ui vertical divider"></div>
+
+  <div id="location_website" class="column">
   </div>
-  <div id="location_website" class="ui segment">
-    THIS WILL BE THE WEBSITE
+
+</div>
+
+<div class="ui stackable four colmn celled grid">
+
+  <div class="row">
+
+      <div id="location_byob" class="four wide column">
+        <h3>BYOB</h3>
+        <button class="ui icon button">
+          <i class="checkmark icon yes"></i>
+        </button>
+        <button class="ui icon button">
+          <i class="minus icon no"></i>
+        </button>
+      </div>
+
+      <div id="location_alcohol" class="four wide column">
+        <h3>Alcohol</h3>
+        <button class="ui icon button">
+          <i class="checkmark icon yes"></i>
+        </button>
+        <button class="ui icon button">
+          <i class="minus icon no"></i>
+        </button>
+      </div>
+
+      <div id="location_latenight" class="four wide column">
+        <h3>Late Night</h3>
+        <button class="ui icon button">
+          <i class="checkmark icon yes"></i>
+        </button>
+        <button class="ui icon button">
+          <i class="minus icon no"></i>
+        </button>
+      </div>
+
+      <div id="location_outdoor" class="four wide column">
+        <h3>Outdoor</h3>
+        <button class="ui icon button">
+          <i class="checkmark icon yes"></i>
+        </button>
+        <button class="ui icon button">
+          <i class="minus icon no"></i>
+        </button>
+      </div>
+  </div>
+
+  <div class="row">
+    <div id="location_challenges">Challenges</div>
+    <div id="location_allergies">Allergies</div>
+    <div id="location_burgers">Burgers
+      <script type='text/template' id="burger-template">
+        <ul>
+          <li>Description: <%= description %></li>
+        </ul>
+      </script>
+    </div>
+    <div id="location_sides">Sides</div>
   </div>
 
 </div>
 
 
-<div id="location_byob">BYOB</div>
-<div id="location_alcohol">Alcohol</div>
-<div id="location_latenight">Late Night</div>
-<div id="location_outdoor">Outdoor</div>
-<div id="location_challenges">Challenges</div>
-<div id="location_allergies">Allergies</div>
-<div id="location_burgers">Burgers
-  <script type='text/template' id="burger-template">
-    <ul>
-      <li>Description: <%= description %></li>
-    </ul>
-  </script>
-</div>
-<div id="location_sides">Sides</div>
-
-
-
-<button class="ui icon button">
-  <i class="checkmark icon yes"></i>
-</button>
-<button class="ui icon button">
-  <i class="minus icon no"></i>
-</button>
 
 <!-- <i class="minus icon"></i>
 <i class="checkmark icon"></i> -->
