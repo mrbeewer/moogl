@@ -4895,6 +4895,22 @@ input::selection {
 /*******************************
          Site Overrides
 *******************************/
+
+.0_dollar {
+  display: inline;
+}
+
+.1_dollar {
+  display: inline;
+}
+
+.2_dollar {
+  display: inline;
+}
+
+.3_dollar {
+  display: inline;
+}
 /*!
  * # Semantic UI 2.1.7 - Flag
  * http://github.com/semantic-org/semantic-ui/
