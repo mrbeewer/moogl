@@ -6,7 +6,7 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ8wDa0Y7m3dFsKwNaTPEsZD5AR3kq5Dc&callback=initMap"></script>
 
 
-  <div id="map" style="width:500px; height:300px"></div>
+  <div id="map" style="width:700px; height:500px"></div>
 
 
 
@@ -38,229 +38,85 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ8wDa0Y7m3dFsKwNaTPEsZD5AR3kq5Dc&signed_in=true&callback=initMap"></script> -->
 
 <script type="text/javascript">
-
+  var map;
   function initMap() {
     console.log('initMap called');
-    var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 41.934365, lng: -87.631506}, //chicago-ish
-      zoom: 9 // smaller is closer
+      zoom: 12 // smaller is closer
     });
+    dataCalling(map);
+            // setMarkers(map);
 
-    setMarkers(map);
   }
 
 
   var data;
-
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "/location/q/foodtruck:true&latenight:true&byob:true&price:4", true);
-  xhr.onload = function() {
-    if (xhr.readyState != XMLHttpRequest.DONE) {
-      return;
-    }
-    if (xhr.status == 200) {
-      console.log("query successful");
-      var response = JSON.parse(xhr.responseText);
-      console.log(response);
-      data = response;
-      console.log(data);
-
-      value = JSON.stringify(data);
-
-      var setSession = new XMLHttpRequest();
-      setSession.open("POST", "/location/set-session", true);
-      setSession.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-       setSession.onreadystatechange = function () {
-           if (setSession.readyState == 4 && setSession.status == 200) {
-               console.log(setSession.responseText);
-           }
-       }
-       setSession.send(value);
-
-      };
-  };
-  xhr.send(null);
-
-
   var mapData;
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "/location/get-session", true);
-  xhr.onload = function() {
-    if (xhr.readyState != XMLHttpRequest.DONE) {
-      return;
-    }
-    if (xhr.status == 200) {
-      console.log("query successful");
-      var response = JSON.parse(xhr.responseText);
-      console.log(response);
-      mapData = response;
-      console.log(mapData);
+
+  function dataCalling(map) {
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/location/q/foodtruck:true", false);
+    xhr.onload = function() {
+      if (xhr.readyState != XMLHttpRequest.DONE) {
+        return;
+      }
+      if (xhr.status == 200) {
+        console.log("query successful - query search terms");
+        // console.log(xhr.responseText);
+        var response = JSON.parse(xhr.responseText);
+        console.log(response);
+        data = response;
+        console.log(data);
+
+        value = JSON.stringify(data);
+
+        var setSession = new XMLHttpRequest();
+        setSession.open("POST", "/location/set-session", false);
+        setSession.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+         setSession.onreadystatechange = function () {
+             if (setSession.readyState == 4 && setSession.status == 200) {
+                 console.log(setSession.responseText);
+             }
+         }
+         setSession.send(value);
+
+        };
     };
-  };
-  xhr.send(null);
-
-
-  //
-  // var setSession = new XMLHttpRequest();
-  // setSession.open("POST", "/location/set-session/", true);
-  // setSession.onload = function() {
-  //   if (setSession.readyState != XMLHttpRequest.DONE) {
-  //     return;
-  //   }
-  //   // if (setSession.status == 200) {
-  //   //   var response = JSON.parse(setSession.responseText);
-  //   //   console.log(response);
-  //   //   data = response;
-  //   //   console.log(data);
-  //   // }
-  // };
-  // setSession.send(JSON.stringify(data));
+    xhr.send(null);
 
 
 
-
-
-
-
-  var data = [ {
-    "name": "Tom's Sandwiches",
-    "address": "593 Bergen Avenue, Chicago, IL, 60661",
-    "coords": [
-      -87.631506,
-      41.934365
-    ],
-    "phone": "+1 (840) 456-2353",
-    "company": "www.bostonic.com",
-    "price": 1,
-    "foodtruck": false,
-    "byob": false,
-    "alcohol": true,
-    "latenight": false,
-    "outdoor": true,
-    "image": "https://pixabay.com/static/uploads/photo/2015/07/30/18/23/burger-868145_150.jpg",
-    "burgers": [
-      {
-        "name": "The Yummy Quadruple Burger",
-        "description": "Qui consequat eiusmod magna eu officia ut duis eiusmod incididunt in veniam.",
-        "rating": 4,
-        "veggie": true,
-        "image": "https://pixabay.com/static/uploads/photo/2015/07/01/07/06/burger-827309_150.jpg",
-        "meat": {
-          "grassfed": true,
-          "kobe": true,
-          "bison": true,
-          "angus": true,
-          "turkey": true,
-          "lamb": false,
-          "elk": false
-        }
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/location/get-session", false);
+    xhr.onload = function() {
+      if (xhr.readyState != XMLHttpRequest.DONE) {
+        return;
       }
-    ],
-    "sides": {
-      "duckFries": true,
-      "tots": false,
-      "macAndCheese": true
-    },
-    "allergies": {
-      "accommodates": true,
-      "glutenFree": false
-    },
-    "challenges": {
-      "exists": false,
-      "name": "The Meaty Devour",
-      "description": "Sunt ad elit ullamco velit anim do minim consequat ullamco nisi sint sint commodo anim."
-    },
-    "hours": {
-      "days": "Monday - Sunday",
-      "opening": "7:00AM",
-      "closing": "10:00PM",
-      "closed": false
-    }
-  },
-  {
-    "name": "Bob's Burgers",
-    "address": "929 Seabring Street, Chicago, IL, 60612",
-    "coords": [
-      -87.714567,
-      42.029209
-    ],
-    "phone": "+1 (928) 430-2881",
-    "company": "www.envire.com",
-    "price": 2,
-    "foodtruck": false,
-    "byob": false,
-    "alcohol": true,
-    "latenight": true,
-    "outdoor": true,
-    "image": "https://pixabay.com/static/uploads/photo/2015/09/22/15/42/burger-951896_150.jpg",
-    "burgers": [
-      {
-        "name": "The Delectable Lubricated Sandwich",
-        "description": "Quis pariatur et magna sint exercitation cillum proident ut cupidatat cillum esse aute.",
-        "rating": 4,
-        "veggie": true,
-        "image": "https://pixabay.com/static/uploads/photo/2015/07/01/07/06/burger-827309_150.jpg",
-        "meat": {
-          "grassfed": false,
-          "kobe": true,
-          "bison": true,
-          "angus": true,
-          "turkey": true,
-          "lamb": true,
-          "elk": true
-        }
-      },
-      {
-        "name": "The Yummy Lubricated Sandwich",
-        "description": "Mollit non laborum velit velit nisi pariatur in amet sunt.",
-        "rating": 4,
-        "veggie": true,
-        "image": "https://pixabay.com/static/uploads/photo/2015/10/13/21/09/sandwich-986799_150.jpg",
-        "meat": {
-          "grassfed": true,
-          "kobe": true,
-          "bison": false,
-          "angus": true,
-          "turkey": false,
-          "lamb": false,
-          "elk": true
-        }
-      }
-    ],
-    "sides": {
-      "duckFries": true,
-      "tots": false,
-      "macAndCheese": true
-    },
-    "allergies": {
-      "accommodates": false,
-      "glutenFree": true
-    },
-    "challenges": {
-      "exists": false,
-      "name": "The Delectable Eat",
-      "description": "Minim eiusmod consectetur id sint consectetur Lorem est enim qui do eu."
-    },
-    "hours": {
-      "days": "Monday - Sunday",
-      "opening": "7:00AM",
-      "closing": "10:00PM",
-      "closed": false
-    }
-  }];
+      if (xhr.status == 200) {
+        console.log("query successful");
+        var response = JSON.parse(xhr.responseText);
+        console.log(response);
+        mapData = response;
+        console.log(mapData);
+        setMarkers(mapData, map);
+      };
+    };
+    xhr.send(null);
 
 
+  }
 
-  console.log(data);
-  data = mapData
 
 
   var infoWindows = [];
 
 
 
-function setMarkers(map) {
+function setMarkers(mapData, map) {
   console.log("setMarkers called");
+  data = mapData;
   var marker = [];
   for (var i = 0; i < data.length; i++) {
     var place = data[i];
@@ -330,6 +186,82 @@ var markerItem = function(data, map) {
       '<p>Rating: ' + data.burgers[0].rating + ' out of 4</p>' +
       '<p><img src="' + data.burgers[0].image + '" alt="" /></p>' +
       '<input type="button" value="Button">';
+
+    var content = '<div class="ui horizontal segments">' +
+      '<div class="ui segments">' +
+        '<h1 id="location_name" class="ui segment">' + data.name +
+        '</h1>' +
+        '<div id="location_price" class="ui segment">' +
+          '<div id="location_price" class="zero_dollar price">$</div>' +
+          '<div id="location_price" class="one_dollar price">$</div>' +
+          '<div id="location_price" class="two_dollar price">$</div>' +
+          '<div id="location_price" class="three_dollar price">$</div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div id="location_image" class="ui segment">' +
+        '<img src="' + data.image + '" alt="" />' +
+      '</div>' +
+
+    '</div>' +
+
+    '<div class="ui horizontal segments">' +
+
+      '<div id="location_address" class="ui segment">' +
+        data.address +
+      '</div>' +
+      '<div id="location_hours" class="ui segment">' +
+        '<p>' + data.hours[0].days + '</p>' +
+        '<p>Opens: ' + data.hours[0].opening + '</p>' +
+        '<p>Closes: ' + data.hours[0].closing + '</p>' +
+      '</div>' +
+      '<div id="location_phone" class="ui segment">' +
+        data.phone +
+      '</div>';
+    //   <div id="location_website" class="ui segment">
+    //     THIS WILL BE THE WEBSITE
+    //   </div>
+    //
+    // </div>
+    //
+    //
+    // <div id="location_byob">BYOB</div>
+    // <div id="location_alcohol">Alcohol</div>
+    // <div id="location_latenight">Late Night</div>
+    // <div id="location_outdoor">Outdoor</div>
+    // <div id="location_challenges">Challenges</div>
+    // <div id="location_allergies">Allergies</div>
+    // <div id="location_burgers">Burgers</div>
+    // <div id="location_sides">Sides</div>
+
+
+
+    // <button class="ui icon button">
+    //   <i class="checkmark icon yes"></i>
+    // </button>
+    // <button class="ui icon button">
+    //   <i class="minus icon no"></i>
+    // </button>
+    //
+    // <!-- <i class="minus icon"></i>
+    // <i class="checkmark icon"></i> -->
+    // <!-- <div id="location_foodtruck">Food Truck</div> -->
+    // <div id="location_foodtruck" class="yes">-</div>
+    // <div id="location_foodtruck" class="no">-</div>
+    //
+    // <div id="location_foodtruck" class="yes">-</div>
+    // <div id="location_foodtruck" class="no">-</div>
+    //
+    // <div id="location_foodtruck" class="yes">-</div>
+    // <div id="location_foodtruck" class="no">-</div>
+    //
+    // <div id="location_foodtruck" class="yes">-</div>
+    // <div id="location_foodtruck" class="no">-</div>
+    //
+    // <div id="location_foodtruck" class="yes">-</div>
+    // <div id="location_foodtruck" class="no">-</div>
+
+
     infowindow.setContent(content);
     infoWindows.push(infowindow);
     infowindow.open(map, marka);
@@ -340,31 +272,28 @@ var markerItem = function(data, map) {
 
   // Try HTML5 geolocation.
   // ...my browser blocks the geolocation for local files
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(function(position) {
-//       var pos = {
-//         lat: position.coords.latitude,
-//         lng: position.coords.longitude
-//       };
-//
-//       infoWindow.setPosition(pos);
-//       infoWindow.setContent('Location found.');
-//       map.setCenter(pos);
-//     }, function() {
-//       handleLocationError(true, infoWindow, map.getCenter());
-//     });
-//   } else {
-//     // Browser doesn't support Geolocation
-//     handleLocationError(false, infoWindow, map.getCenter());
-//   }
-// }
-//
-// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-//   infoWindow.setPosition(pos);
-//   infoWindow.setContent(browserHasGeolocation ?
-//                         'Error: The Geolocation service failed.' :
-//                         'Error: Your browser doesn\'t support geolocation.');
-// }
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      map.setCenter(pos);
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    })
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+}
 
 
 </script>
