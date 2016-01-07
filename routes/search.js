@@ -19,6 +19,10 @@ function buildErrorResponse(err) {
   };
 };
 
+router.get("/showme", function(req, res, next) {
+  res.render("search");
+});
+
 // GET all searches.
 router.get('/', function(req, res, next) {
   model.find(function(err, searches) {
