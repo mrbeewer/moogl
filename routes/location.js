@@ -32,6 +32,10 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/detail', function(req, res, next) {
+  res.render('login');
+});
+
 router.get('/query', function(req, res, next) {
   model.find({ foodtruck:true, latenight:true, byob:true, price:4 },function(err, locations) {
     if (err) {
@@ -42,20 +46,21 @@ router.get('/query', function(req, res, next) {
   });
 });
 
-router.get('/q', function(req, res, next) {
-  var url = require("url");
-  var parts = url.parse(req.query.terms, true);
-  res.send("terms is set to " + req.query.terms + "parts is " + parts[1]);
-  // var url = require("url");
-  var parts = url.parse(req.params.terms, true);
-  // console.log(parts);
-  // model.find({ foodtruck:true, latenight:true, byob:true, price:4 },function(err, locations) {
-  //   if (err) {
-  //     res.json(buildErrorResponse(err));
-  //   } else {
-  //     res.json(locations);
-  //   }
-  // });
+router.get('/q/:id', function(req, res, next) {
+  var search = {};
+  var termSplit = req.params.id.split("&");
+  for ( var phrase in termSplit ) {
+    var pairSplit = termSplit[phrase].split(':');
+    search[pairSplit[0]] = pairSplit[1];
+  }
+  console.log(search);
+  model.find(search,function(err, locations) {
+    if (err) {
+      res.json(buildErrorResponse(err));
+    } else {
+      res.json(locations);
+    }
+  });
 });
 
 // var url = require("url");
