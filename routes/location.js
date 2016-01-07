@@ -63,8 +63,6 @@ router.get('/q/:id', function(req, res, next) {
   });
 });
 
-// var url = require("url");
-// var parts = url.parse("http://test.com?page=25&foo=bar", true);
 
 router.get('/:id', function(req, res, next) {
   model.findById(req.params.id, function(err, location) {
