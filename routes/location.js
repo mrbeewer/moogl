@@ -32,6 +32,40 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/detail', function(req, res, next) {
+  res.render('login');
+});
+
+router.get('/query', function(req, res, next) {
+  model.find({ foodtruck:true, latenight:true, byob:true, price:4 },function(err, locations) {
+    if (err) {
+      res.json(buildErrorResponse(err));
+    } else {
+      res.json(locations);
+    }
+  });
+});
+
+router.get('/q/:id', function(req, res, next) {
+  var search = {};
+  var termSplit = req.params.id.split("&");
+  for ( var phrase in termSplit ) {
+    var pairSplit = termSplit[phrase].split(':');
+    search[pairSplit[0]] = pairSplit[1];
+  }
+  console.log(search);
+  model.find(search,function(err, locations) {
+    if (err) {
+      res.json(buildErrorResponse(err));
+    } else {
+      res.json(locations);
+    }
+  });
+});
+
+// var url = require("url");
+// var parts = url.parse("http://test.com?page=25&foo=bar", true);
+
 router.get('/:id', function(req, res, next) {
   model.findById(req.params.id, function(err, location) {
     if (err) {
@@ -40,6 +74,26 @@ router.get('/:id', function(req, res, next) {
       res.json(location);
     }
   });
+});
+
+router.get('/location/:id', function(req, res, next) {
+ model.findById(req.params.id, function(err, location) {
+   if (err) {
+     res.json(buildErrorResponse(err));
+   } else {
+     res.json(location);
+   }
+ });
+});
+
+router.get('/location/burger/:id', function(req, res, next) {
+ model.findById(req.params.id, function(err, burger) {
+   if (err) {
+     res.json(buildErrorResponse(err));
+   } else {
+     res.json(burger);
+   }
+ });
 });
 
 router.post('/', function(req, res, next) {
