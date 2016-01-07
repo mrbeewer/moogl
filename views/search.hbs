@@ -61,24 +61,38 @@
         var selection = this.name;
         if (this.value == "true") {
           this.value = false;
-          console.log(this.value);
         } else {
           this.value = true;
-          console.log(this.value);
         }
         this.classList.toggle("selected");
 
-        console.log(selection);
+        document.getElementById('search-btn').addEventListener("click", function() {
+          getSearchCriteria(obj);
+        });
       });
     }
   }
+
+  var getSearchCriteria = function(obj) {
+    var checkBtns = document.getElementsByClassName('defaults');
+    for (var i = 0; i < checkBtns.length; i++) {
+      obj[checkBtns[i].name] = checkBtns[i].value;
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/q", true);
+    xhr.onload = function() {
+
+    };
+    xhr.send();
+    console.log(obj);
+  };
 </script>
 
 <script type="text/template" id="refined-search-template">
 
   <img id="search-img" src="<%= imageURL %>" alt="" id="detailSearchImg"/>
   <h1 id="title"> <%= name %> </h1>
-  <hr>
+  <!-- <hr> -->
   <div id="search-desc" class="ui raised segments">
     <p>
       <%= description %>
@@ -108,7 +122,7 @@
     </div>
   </div>
 </div>
-  <div id="search-btn" class="ui raised segment">
-    <button class="ui green inverted button">Search</button>
+  <div class="ui raised segment">
+    <button id="search-btn" class="ui button">Search</button>
   </div>
 </script>
