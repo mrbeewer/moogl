@@ -84,6 +84,35 @@ router.get('/q/:id', function(req, res, next) {
   });
 });
 
+router.post('/q', function(req, res, next) {
+  console.log("==========");
+  console.log(req.body);
+  var search = req.body;
+  // var termSplit = req.params.id.split("&");
+  // for ( var phrase in termSplit ) {
+  //   var pairSplit = termSplit[phrase].split(':');
+  //   search[pairSplit[0]] = pairSplit[1];
+  // }
+  console.log("===============");
+  console.log("Received Search");
+  console.log(search);
+  model.find(search,function(err, locations) {
+    if (err) {
+      res.json(buildErrorResponse(err));
+    } else {
+      console.log("===============")
+      console.log("Results");
+      console.log(locations);
+      res.json({message: "it worked"});
+      // res.json(locations);
+      // console.log(locations);
+      // console.log("stringify now");
+      // console.log(JSON.stringify(locations));
+      // res.render('map', { mapData: JSON.stringify(locations) });
+    }
+  });
+});
+
 router.get('/map', function(req, res, next) {
   res.render('map');
 });

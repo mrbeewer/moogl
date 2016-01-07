@@ -55,6 +55,19 @@
   var mapData;
 
   function dataCalling(map) {
+    // var value = {
+    //   "foodtruck" : "true",
+    //   "latenight" : "true"
+    // };
+    // var setSessionD = new XMLHttpRequest();
+    // setSessionD.open("POST", "/location/q", false);
+    // setSessionD.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+    //  setSessionD.onreadystatechange = function () {
+    //      if (setSessionD.readyState == 4 && setSessionD.status == 200) {
+    //          console.log(setSessionD.responseText);
+    //      }
+    //  }
+    //  setSessionD.send(valueD);
 
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "/location/q/foodtruck:true", false);
@@ -81,11 +94,9 @@
              }
          }
          setSession.send(value);
-
         };
     };
     xhr.send(null);
-
 
 
     var xhr = new XMLHttpRequest();
