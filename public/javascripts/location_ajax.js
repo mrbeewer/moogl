@@ -1,5 +1,5 @@
 function getLocation() {
-  locationID = "568d5f825d5455088a340ff1";
+  locationID = "568d42205d39631279404a88";
   $.ajax({
     url: '/location/detail/data',
     type: 'GET',

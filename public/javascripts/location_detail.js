@@ -8,7 +8,7 @@ function updateLocationDetail(data){
 
   var location = data[0];
   var keys = Object.keys(location);
-
+  console.log(keys);
   $("#location_" + location.name).html(location.name);
   $("#location_" + location.address).html(location.address);
   // $("#location_" + location.phone).html(location.phone);
@@ -27,8 +27,9 @@ function updateLocationDetail(data){
   location.outdoor ? setYes("outdoor") : setNo("outdoor");
   location.challenges ? setYes("challenges") : setNo("challenges");
   location.allergies ? setYes("allergies") : setNo("allergies");
-  location.sides
-  location.burgers
+  // location.sides
+  // location.burgers
+  console.log(location.burgers);
 
   // var arr = [];
   // var arr = Object.keys(location);
