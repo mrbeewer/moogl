@@ -8,15 +8,30 @@ function updateLocationDetail(data){
 
   var location = data[0];
   var keys = Object.keys(location);
-  $("#location_" + location.name).html(location.name);
-  $("#location_" + location.address).html(location.address);
-  // $("#location_" + location.phone).html(location.phone);
-  $("#location_" + location.website).html(location.website);
+
+
+  $("#location_name").html(location.name);
+  $("#location_address").html(location.address);
+  $("#location_phone").html(location.phone);
+  $("#location_website").html(location.website);
   // location.image
-  // $("#location_" + location.hours).html(location.hours);
+  $("#location_hours").html(location.hours[0].closed);
+  $("#location_hours").append(location.hours[0].closing);
+  $("#location_hours").append(location.hours[0].days);
+  $("#location_hours").append(location.hours[0].opening);
+
+
+  var priceArr = [
+    $("#location_price.zero_dollar"),
+    $("#location_price.one_dollar"),
+    $("#location_price.two_dollar"),
+    $("#location_price.three_dollar"),
+  ];
 
   for (var i = 0; i <= location.price; i++) {
-    $("#location_price." + i + "_dollar").css("color","green");
+
+    priceArr[i].css("color","black");
+
   };
 
   location.foodtruck ? setYes("foodtruck") : setNo("foodtruck");
