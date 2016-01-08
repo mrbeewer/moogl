@@ -10,23 +10,27 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 // end configuration for passport
 
-
+// User Account Info
 router.get('/', function(req, res){
   res.render('user', { user: req.user });
 });
 
+// User Login
 router.get('/login', function(req, res){
   res.render('login', { user: req.user });
 });
 
+// User Login Authentication
 router.post('/login', passport.authenticate('local', { failureRedirect: '/user' }), function(req, res) {
   res.redirect('/search/showme');
 });
 
+// User Register View
 router.get('/register', function(req, res){
   res.render('register', { user: req.user });
 });
 
+// User Register (posting info)
 router.post('/register', function(req, res){
   User.register(new User({
     username: req.body.username //from the form
@@ -44,6 +48,7 @@ router.post('/register', function(req, res){
 
 });
 
+// User Logout
 router.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');

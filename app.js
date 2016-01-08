@@ -30,12 +30,6 @@ app.use(require('express-session')({
   resave: false,
   saveUninitialized: false
 }));
-// enable cookieSession
-// app.use(express.cookieSession({
-//   key: 'app.sess',
-//   secret: 'BeelerBlocker'
-// }));
-//
 app.use(passport.initialize());
 app.use(passport.session());
 // done enabling sessions

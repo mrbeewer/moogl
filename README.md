@@ -27,6 +27,7 @@
 * Passport - User Authentication and Sessions
 * JSON - API Dealing
 * Semantic - CSS Framework
+* [JSON Generator](http://www.json-generator.com/) - Database of fake restaurants
 * [Draw.io](http://draw.io) - Wireframes and ERD
 * [Trello](http://trello.com) - SCRUM Board
 
@@ -35,7 +36,7 @@
 * [User Stories](https://trello.com/b/aHJErc6U)
 * Live App - [thoughtful: be inspired](http://104.131.68.13:3000/)
 
-### Approach: GROUP UPDATE!!!
+### Approach:
 * Planning Phase
   * Over the first and second days, the team spent the majority of the time in plan mode.
     * Discussed the potential project topic (events listing for Chicago) and through this conversation continued to narrow the topic to a listing of the best burgers in Chicago.
@@ -47,6 +48,7 @@
     * As a group, we implemented a basic Express.js folder structure, Backbone MVC, RESTful API routing, and Passport Authentication.
   * Single Page Application Through Backbone:
     * The initial plan for the application was to utilize Backbone MVC for a 'Single Page Application' rather than using the routing method of Ruby/Sinatra. Although we collectively learned a lot, it was a struggle to use Backbone appropriately for Single Page without using any routes.
+    * **During this time, we created a new branch, NoBackbone, that became the main branch for use.**
   * Standard MVC:
     * After deciding that we were not going to be able to develop a single page application to the standards we desired, we returned to the basic buildout with routing. To facilitate the development, we broke into pairs focusing on different aspects.
     * Marty and Katie
@@ -57,7 +59,7 @@
       * Map Populating / Search Routing
 
 
-### Installation: UPDATE ME DAVID!!
+### Installation:
 **Install on your local system**
 * *Git* the files
   * Fork the repository and `git clone` to your local system

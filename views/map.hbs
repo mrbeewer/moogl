@@ -61,11 +61,13 @@ function setMarkers(mapData, map) {
 
 // Marker Constructor
 var markerItem = function(data, map) {
+  // Marker Image
   this.image = {
     url: '/images/map-marker.png',
     size: new google.maps.Size(30, 44)
   };
 
+  // Marker position
   this.marker = new google.maps.Marker({
     position: {lat: data.coords[1], lng: data.coords[0]},
     map: map,
@@ -73,6 +75,7 @@ var markerItem = function(data, map) {
     icon: this.image
   });
 
+  // Click Listener for Marker
   var markerSelf = this.marker;
   this.marker.addListener('click', function() {
     // concatinate the locationID to POST route url
@@ -92,12 +95,14 @@ var markerItem = function(data, map) {
     };
     setLocationID.send(null);
 
+    // Close any open InfoWindows
     for (var i=0;i<infoWindows.length;i++) {
        infoWindows[i].close();
     }
-    // console.log(data[0]);
+    // Make a new infowindow
     var infowindow = new google.maps.InfoWindow();
-
+    // content (innerds) for InforWindow
+    // -- Ideally this will be updated to a template format
     var content = '<div class="ui horizontal segments">' +
       '<div class="ui segments">' +
         '<h1 id="location_name" class="ui segment">' + data.name +
@@ -131,8 +136,11 @@ var markerItem = function(data, map) {
         data.phone +
       '</div>';
 
+    // put content in the InfoWindow
     infowindow.setContent(content);
+    // Add the infoWindow to the array for closing when new opens
     infoWindows.push(infowindow);
+    // open the window
     infowindow.open(map, markerSelf);
   });
 }
