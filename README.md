@@ -16,7 +16,7 @@
   <br>
   <img width="400px" src="https://github.com/Beelers-Blockers/moogl/blob/NoBackbone/screenshots/moogl-LocationDetails.png"  alt="moogl - Location Detail View"/>
   <br>
-  <img width="400px" src="https://github.com/Beelers-Blockers/moogl/blob/NoBackbone/screenshots/moogl-BurgerDetail.png"  alt="moogl - Burger Detail View"/>
+  <img width="400px" src="https://github.com/Beelers-Blockers/moogl/blob/NoBackbone/screenshots/moogl-BurgerDetails.png"  alt="moogl - Burger Detail View"/>
 </p>
 
 ### Technology:
