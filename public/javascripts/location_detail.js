@@ -21,33 +21,64 @@ function updateLocationDetail(data){
   var location = data[0];
   var keys = Object.keys(location);
 
-  console.log(location);
-  $("#location_name").html(location.name);
+  $("#location_name").html(location.name + "  ");
   $("#location_address").html(location.address);
   $("#location_phone").html(location.phone);
   $("#location_website").html(location.website);
-  // location.image
-  $("#location_hours").html(location.hours[0].closed);
-  $("#location_hours").append(location.hours[0].closing);
-  $("#location_hours").append(location.hours[0].days);
-  $("#location_hours").append(location.hours[0].opening);
 
+  $("#location_hours").append(location.hours[0].days + " " + location.hours[0].opening + " to " + location.hours[0].closing);
+
+  $(".locationHeader").css("background-image", "url(" + location.image + ")");
 
   var priceArr = [
-    $("#location_price.zero_dollar"),
-    $("#location_price.one_dollar"),
-    $("#location_price.two_dollar"),
-    $("#location_price.three_dollar"),
+    $(".zero_dollar"),
+    $(".one_dollar"),
+    $(".two_dollar"),
+    $(".three_dollar")
   ];
 
-  for (var i = 0; i <= location.price; i++) {
+  for (var i = 0; i < location.price; i++) {
 
     priceArr[i].css("color","black");
 
   };
   //
+  //
+  var burgersNumArr = Object.keys(location.burgers);
+  //
+  var burgerListItemHTML = $("#burgerListItemOne-template").html();
+  var burgerListItemTemplate = _.template(burgerListItemHTML);
+  var compiled_burgerList = burgerListItemTemplate(location.burgers[0]);
+  $("#burger_list").append(compiled_burgerList);
+  $("#burgerItemOne").click(function() {
+    $("#burgerDetailOne.ui.modal").modal("show");
+  });
+  //
+  if (burgersNumArr.length > 0) {
+    var burgerListItemHTML = $("#burgerListItemTwo-template").html();
+    var burgerListItemTemplate = _.template(burgerListItemHTML);
+    var compiled_burgerList = burgerListItemTemplate(location.burgers[1]);
+    $("#burger_list").append(compiled_burgerList);
+    $("#burgerItemTwo").click(function() {
+      $("#burgerDetailTwo.ui.modal").modal("show");
+    });
+
+  }
+  //
+  if (burgersNumArr.length > 1) {
+    var burgerListItemHTML = $("#burgerListItemThree-template").html();
+    var burgerListItemTemplate = _.template(burgerListItemHTML);
+    var compiled_burgerList = burgerListItemTemplate(location.burgers[2]);
+    $("#burger_list").append(compiled_burgerList);
+    $("#burgerItemThree").click(function() {
+      $("#burgerDetailThree.ui.modal").modal("show");
+    });
+
+  }
+  //
+
+  //
   // default search options...need to set on data/page load
-  console.log(location);
   location.alcohol ? setToggleOn('#location_alcohol') : setToggleOff($('#location_alcohol'));
   location.byob ? setToggleOn('#location_byob') : setToggleOff('#location_byob');
   location.latenight ? setToggleOn('#location_latenight') : setToggleOff('#location_latenight');
@@ -56,8 +87,6 @@ function updateLocationDetail(data){
   location.foodtruck ? setYes("foodtruck") : setNo("foodtruck");
   location.challenges ? setYes("challenges") : setNo("challenges");
   location.allergies ? setYes("allergies") : setNo("allergies");
-  location.sides
-  location.burgers
 
   addBurgerDetails(location.burgers);
 
