@@ -19,9 +19,9 @@
 
   var data;
   var mapData;
-  var infoWindows = [];
 
   function dataCalling(map) {
+    var infoWindows = [];
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "/location/get-session", false);
     xhr.onload = function() {
@@ -103,29 +103,12 @@ var markerItem = function(data, map) {
   // var winda = this.infoWindow;
   var marka = this.marker;
   this.marker.addListener('click', function() {
-    // concatinate the locationID to POST route url
-    var saveURL = "/location/set-session/" + data._id
-    // call the POST to save into a Session Variable
-    var setLocationID = new XMLHttpRequest();
-    setLocationID.open("POST", saveURL, false);
-    setLocationID.onload = function() {
-      if (setLocationID.readyState != XMLHttpRequest.DONE) {
-        return;
-      }
-      if (setLocationID.status == 200) {
-        console.log("SUCCESS: " + setLocationID.statusText);
-      } else {
-        console.log("ERROR: " + setLocationID.statusText);
-      }
-    };
-    setLocationID.send(null);
-
     for (var i=0;i<infoWindows.length;i++) {
        infoWindows[i].close();
     }
-    // console.log(data[0]);
+    console.log(data[0]);
     var infowindow = new google.maps.InfoWindow();
-    var content = saveURL;
+    var content = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
       '<h1 id="firstHeading" class="firstHeading">' + data.name + '</h1>'+
@@ -140,7 +123,6 @@ var markerItem = function(data, map) {
       '<div class="ui segments">' +
         '<h1 id="location_name" class="ui segment">' + data.name +
         '</h1>' +
-        '<input type="button" onclick="window.location=\'/location/detail\';" value="Details">' +
         '<div id="location_price" class="ui segment">' +
           '<div id="location_price" class="zero_dollar price">$</div>' +
           '<div id="location_price" class="one_dollar price">$</div>' +
