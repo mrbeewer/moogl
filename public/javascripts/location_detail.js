@@ -19,7 +19,7 @@ $('document').ready(function(){
 function updateLocationDetail(data){
 
   var location = data[0];
-  var keys = Object.keys(location);
+  // var keys = Object.keys(location);
 
   $("#location_name").html(location.name + "  ");
   $("#location_address").html(location.address);
@@ -89,8 +89,6 @@ function updateLocationDetail(data){
   location.foodtruck ? setYes("foodtruck") : setNo("foodtruck");
   location.challenges ? setYes("challenges") : setNo("challenges");
   location.allergies ? setYes("allergies") : setNo("allergies");
-
-
 
 };
 
