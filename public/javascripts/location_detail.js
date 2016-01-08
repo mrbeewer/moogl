@@ -87,7 +87,7 @@ function updateLocationDetail(data){
   location.foodtruck ? setYes("foodtruck") : setNo("foodtruck");
   location.challenges ? setYes("challenges") : setNo("challenges");
   location.allergies ? setYes("allergies") : setNo("allergies");
-
+  console.log(location.burgers);
   addBurgerDetails(location.burgers);
 
 };
