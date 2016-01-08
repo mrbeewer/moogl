@@ -93,7 +93,6 @@
   };
   // This will set the session data and render the map
   var setSession = function(jason) {
-    console.log(jason);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/location/set-session", true);
     xhr.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
@@ -102,7 +101,7 @@
         return;
       }
       if (xhr.status == 200) {
-        // console.log(xhr.responseText);
+        // force a javascript redirect
         window.location = "/location/map";
       }
     };
