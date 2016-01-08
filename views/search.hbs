@@ -15,7 +15,7 @@
 
 
 <script type="text/javascript">
-
+  // This method creates and displays the secondary search page based on the primary search criteria selected
   var searchBtns = document.getElementsByTagName('button');
   for (var i = 0; i < searchBtns.length; i++) {
     searchBtns[i].addEventListener('click', function() {
@@ -49,17 +49,18 @@
           var second = document.getElementById('refined-search');
           second.appendChild(div);
           second.style.display = "block";
+          getExtraCriteria(criteria);
+          addDefaults(criteria);
           document.getElementById('search-btn').addEventListener("click", function() {
             getSearchCriteria(criteria);
           });
-          getExtraCriteria(criteria);
-          addDefaults(criteria);
         }
       };
       xhr.send(null);
     });
   }
 
+  // This method adds the default search criteria buttons to the secondary search page
   var addDefaults = function(obj) {
     var btns = document.getElementsByClassName('defaults');
     for (var i = 0; i < btns.length; i++) {
@@ -75,10 +76,13 @@
     }
   }
 
+  // This will request a database query from the server based on search criteria
   var getSearchCriteria = function(obj) {
     var checkBtns = document.getElementsByClassName('defaults');
     for (var i = 0; i < checkBtns.length; i++) {
-      obj[checkBtns[i].name] = checkBtns[i].value;
+      if (checkBtns[i].value == "true") {
+        obj[checkBtns[i].name] = checkBtns[i].value;
+      }
     }
     console.log(obj);
     var xhr = new XMLHttpRequest();
@@ -94,6 +98,7 @@
     };
     xhr.send(JSON.stringify(obj));
   };
+
   // This will set the session data and render the map
   var setSession = function(jason) {
     var xhr = new XMLHttpRequest();
@@ -111,6 +116,7 @@
     xhr.send(jason);
   };
 
+  // This method gets and displays any additional search criteria buttons
   var getExtraCriteria = function(selection) {
     var parent = document.getElementById('defaults-cont');
     var primeSearch = Object.keys(selection)[0];
@@ -118,6 +124,7 @@
       var newDiv = createDiv();
       var newBtn = createBtn();
       newBtn.innerHTML = "Gluten Free";
+      newBtn.name = "glutenFree";
       newDiv.appendChild(newBtn);
       parent.appendChild(newDiv);
     } else if (primeSearch == "meats") {
@@ -153,8 +160,9 @@
         parent.appendChild(newDiv);
       }
     }
-
   };
+
+  // Creates a new Div with all necessary classes for search criteria
   var createDiv = function() {
     var div = document.createElement('div');
     div.classList.add("column");
@@ -163,6 +171,7 @@
     return div;
   };
 
+  // Creates a new Button with all necessary classes for search criteria
   var createBtn = function() {
     var btn = document.createElement('button');
     btn.classList.add("circular");
@@ -175,10 +184,15 @@
 
 
 <script type="text/template" id="refined-search-template">
-
-  <img id="search-img" class="ui segment" src="<%= imageURL %>" alt="" id="detailSearchImg"/>
-  <div id="title" class="ui segment">
-    <h1> <%= name %> </h1>
+  <div class="ui stackable two column grid">
+    <div id="img-container" class="column left aligned">
+      <img id="search-img" class="ui segment" src="<%= imageURL %>" alt="" id="detailSearchImg"/>
+    </div>
+    <div class="column">
+      <div id="title" class="ui segment">
+        <h1> <%= name %> </h1>
+      </div>
+    </div>
   </div>
   <!-- <hr> -->
   <div id="search-desc" class="ui segments">

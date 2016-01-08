@@ -68,8 +68,8 @@ button {
 }
 
 .defaults {
-  height: 90px;
-  width: 90px;
+  height: 100px;
+  width: 100px;
   margin-right: 0;
 }
 
@@ -82,4 +82,27 @@ button {
   background-color: turquoise;
   color: white;
   margin: 0 auto;
+}
+
+@media (min-width: 300px) {
+  #title {
+    display: inline-block;
+    // float: none;
+  }
+  // #img-container {
+  //   width: 200px;
+  //   margin: 0 auto;
+  // }
+  #search-desc {
+    clear: both;
+  }
+}
+
+@media (min-width: 460px) {
+  #title {
+    // float: right;
+  }
+  #img-container {
+    // float: left;
+  }
 }
