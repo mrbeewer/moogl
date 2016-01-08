@@ -5,6 +5,7 @@ function addBurgerDetails(data, i, container) {
   var burger = data[i];
   // object of meat specific data
   var meat = burger.meat[0];
+
   // create underscore template for burger specific view
   var burger_view = $("#burger-template").html();
   var burger_template = _.template(burger_view);
