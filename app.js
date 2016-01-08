@@ -16,7 +16,8 @@ var app = express();
 // app.use(express.cookieParser('B33l3r'));
 // app.use(express.cookieSession());
 // app.use(app.router);
-
+app.use(bodyParser.urlencoded({limit: '50mb'}));
+app.use(bodyParser.json({limit: '50mb'}));
 require("./db/database");
 
 var index = require('./routes/index');
