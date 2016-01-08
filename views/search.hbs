@@ -1,12 +1,12 @@
 <section id="primary-search">
-  <li><button class="ui button" type="button" value="challenges">Burger Challenges</button></li>
-  <li><button class="ui button" type="button" value="foodtruck">Foodtrucks</button></li>
-  <li><button class="ui button" type="button" value="veggie">Vegetarian/Vegan</button></li>
-  <li><button class="ui button" type="button" value="allergies">Allergies</button></li>
-  <li><button class="ui button" type="button" value="meats">Choose Your Meat</button></li>
-  <li><button class="ui button" type="button" value="top">Top Burgers</button></li>
-  <li><button class="ui button" type="button" value="sides">Search by sides</button></li>
-  <li><button class="ui button" type="button" value="cost">Search by cost</button></li>
+  <li><button class="ui blue inverted button" type="button" value="challenges">Burger Challenges</button></li>
+  <li><button class="ui blue inverted button" type="button" value="foodtruck">Foodtrucks</button></li>
+  <li><button class="ui blue inverted button" type="button" value="veggie">Vegetarian/Vegan</button></li>
+  <li><button class="ui blue inverted button" type="button" value="allergies">Allergies</button></li>
+  <li><button class="ui blue inverted button" type="button" value="meats">Choose Your Meat</button></li>
+  <li><button class="ui blue inverted button" type="button" value="top">Top Burgers</button></li>
+  <li><button class="ui blue inverted button" type="button" value="sides">Search by sides</button></li>
+  <li><button class="ui blue inverted button" type="button" value="cost">Search by cost</button></li>
 </section>
 
 <section id="refined-search">
@@ -112,8 +112,10 @@
 
 <script type="text/template" id="refined-search-template">
 
-  <img id="search-img" src="<%= imageURL %>" alt="" id="detailSearchImg"/>
-  <h1 id="title"> <%= name %> </h1>
+  <img id="search-img" class="ui raised segment" src="<%= imageURL %>" alt="" id="detailSearchImg"/>
+  <div id="title" class="ui raised segment">
+    <h1> <%= name %> </h1>
+  </div>
   <!-- <hr> -->
   <div id="search-desc" class="ui raised segments">
     <p>
