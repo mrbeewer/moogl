@@ -24,7 +24,14 @@
       selection = selection.toLowerCase();
 
       var criteria = {};
-      criteria[selection] = "true";
+      if (selection == "foodtruck" || selection == "veggie" || selection == "challenges") {
+        if (selection == "challenges") {
+          selection = selection + ".exists";
+          criteria[selection] = "true";
+        } else {
+          criteria[selection] = "true";
+        }
+      }
       primary.style.display = "none";
 
       var xhr = new XMLHttpRequest();
@@ -34,6 +41,9 @@
           return;
         }
         if (xhr.status == 200) {
+          if (selection == "challenges.exists") {
+            selection = "challenges";
+          }
           var response = JSON.parse(xhr.responseText)[0][selection][0];
           var context = {
             "name" : response.name,
@@ -49,7 +59,7 @@
           var second = document.getElementById('refined-search');
           second.appendChild(div);
           second.style.display = "block";
-          getExtraCriteria(criteria);
+          getExtraCriteria(selection);
           addDefaults(criteria);
           document.getElementById('search-btn').addEventListener("click", function() {
             getSearchCriteria(criteria);
@@ -119,12 +129,13 @@
   // This method gets and displays any additional search criteria buttons
   var getExtraCriteria = function(selection) {
     var parent = document.getElementById('defaults-cont');
-    var primeSearch = Object.keys(selection)[0];
+    var primeSearch = selection;
+    // var primeSearch = Object.keys(selection)[0];
     if (primeSearch == "allergies") {
       var newDiv = createDiv();
       var newBtn = createBtn();
       newBtn.innerHTML = "Gluten Free";
-      newBtn.name = "glutenFree";
+      newBtn.name = selection + ".glutenFree";
       newDiv.appendChild(newBtn);
       parent.appendChild(newDiv);
     } else if (primeSearch == "meats") {
@@ -133,7 +144,7 @@
         var newDiv = createDiv();
         var newBtn = createBtn();
         newBtn.innerHTML = arr[i];
-        newBtn.name = arr[i].toLowerCase();
+        newBtn.name = selection + "." + arr[i].toLowerCase();
         newBtn.value = false;
         newDiv.appendChild(newBtn);
         parent.appendChild(newDiv);
@@ -154,7 +165,7 @@
             newBtn.innerHTML = "Tater Tots";
             break;
         }
-        newBtn.name = arr[i];
+        newBtn.name = selection + "." + arr[i];
         newBtn.value = false;
         newDiv.appendChild(newBtn);
         parent.appendChild(newDiv);
