@@ -42,7 +42,7 @@ var locationID = "568d42205d39631279404a8b";
 
 
 router.get('/detail/data', function(req, res, next) {
-  model.find({ _id: locationID },function(err, location) {
+  model.find({ _id: req.session.locationID },function(err, location) {
     if (err) {
       res.json(buildErrorResponse(err));
     } else {
@@ -61,6 +61,7 @@ router.get('/query', function(req, res, next) {
   });
 });
 
+// No longer using this route, make sure and then remove
 router.get('/q/:id', function(req, res, next) {
   var search = {};
   var termSplit = req.params.id.split("&");
@@ -68,50 +69,28 @@ router.get('/q/:id', function(req, res, next) {
     var pairSplit = termSplit[phrase].split(':');
     search[pairSplit[0]] = pairSplit[1];
   }
-  console.log("===============")
-  console.log("Received Search");
-  console.log(search);
   model.find(search,function(err, locations) {
     if (err) {
       res.json(buildErrorResponse(err));
     } else {
-      console.log("===============")
-      console.log("Results");
-      console.log(locations);
       res.json(locations);
-      // console.log(locations);
-      // console.log("stringify now");
-      // console.log(JSON.stringify(locations));
-      // res.render('map', { mapData: JSON.stringify(locations) });
     }
   });
 });
 
 router.post('/q', function(req, res, next) {
-  console.log("==========");
+  // JSON object sent are search terms
+  console.log("==============");
+  console.log(req);
   console.log(req.body);
   var search = req.body;
-  // var termSplit = req.params.id.split("&");
-  // for ( var phrase in termSplit ) {
-  //   var pairSplit = termSplit[phrase].split(':');
-  //   search[pairSplit[0]] = pairSplit[1];
-  // }
-  console.log("===============");
-  console.log("Received Search");
   console.log(search);
+  // query database by the JSON
   model.find(search,function(err, locations) {
     if (err) {
       res.json(buildErrorResponse(err));
     } else {
-      console.log("===============")
-      console.log("Results");
-      console.log(locations);
       res.json(locations);
-      // res.json(locations);
-      // console.log(locations);
-      // console.log("stringify now");
-      // console.log(JSON.stringify(locations));
-      // res.render('map', { mapData: JSON.stringify(locations) });
     }
   });
 });
@@ -120,17 +99,17 @@ router.get('/map', function(req, res, next) {
   res.render('map');
 });
 
-router.get('/set-session/:id', function(req, res, next) {
+router.post('/set-session/:id', function(req, res, next) {
   req.session.locationID = req.params.id;
-  console.log("session saved");
-  console.log(req.session.search);
+  console.log("session saved via req.params.id");
+  console.log(req.session.locationID);
   res.json({message: "data saved"});
 });
 
 router.post('/set-session', function(req, res, next) {
   req.session.search = req.body;
-  console.log("session saved");
-  console.log(req.session.search);
+  console.log("session saved via req.body");
+  // console.log(req.session.search);
   res.render('map');
 });
 

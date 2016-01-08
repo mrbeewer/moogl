@@ -19,9 +19,9 @@
 
   var data;
   var mapData;
+  var infoWindows = [];
 
   function dataCalling(map) {
-    var infoWindows = [];
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "/location/get-session", false);
     xhr.onload = function() {
@@ -103,56 +103,71 @@ var markerItem = function(data, map) {
   // var winda = this.infoWindow;
   var marka = this.marker;
   this.marker.addListener('click', function() {
-    // send the locationID to the session variable
+    // concatinate the locationID to POST route url
+    var saveURL = "/location/set-session/" + data._id
+    // call the POST to save into a Session Variable
+    var setLocationID = new XMLHttpRequest();
+    setLocationID.open("POST", saveURL, false);
+    setLocationID.onload = function() {
+      if (setLocationID.readyState != XMLHttpRequest.DONE) {
+        return;
+      }
+      if (setLocationID.status == 200) {
+        console.log("SUCCESS: " + setLocationID.statusText);
+      } else {
+        console.log("ERROR: " + setLocationID.statusText);
+      }
+    };
+    setLocationID.send(null);
 
-
-    // for (var i=0;i<infoWindows.length;i++) {
-    //    infoWindows[i].close();
-    // }
+    for (var i=0;i<infoWindows.length;i++) {
+       infoWindows[i].close();
+    }
     // console.log(data[0]);
-    // var infowindow = new google.maps.InfoWindow();
-    // var content = '<div id="content">'+
-    //   '<div id="siteNotice">'+
-    //   '</div>'+
-    //   '<h1 id="firstHeading" class="firstHeading">' + data.name + '</h1>'+
-    //   '<div id="address">'+
-    //   '<p>' + data.address + '</p>' +
-    //   '<p>' + data.burgers[0].name + '</p>' +
-    //   '<p>Rating: ' + data.burgers[0].rating + ' out of 4</p>' +
-    //   '<p><img src="' + data.burgers[0].image + '" alt="" /></p>' +
-    //   '<input type="button" value="Button">';
-    //
-    // var content = '<div class="ui horizontal segments">' +
-    //   '<div class="ui segments">' +
-    //     '<h1 id="location_name" class="ui segment">' + data.name +
-    //     '</h1>' +
-    //     '<div id="location_price" class="ui segment">' +
-    //       '<div id="location_price" class="zero_dollar price">$</div>' +
-    //       '<div id="location_price" class="one_dollar price">$</div>' +
-    //       '<div id="location_price" class="two_dollar price">$</div>' +
-    //       '<div id="location_price" class="three_dollar price">$</div>' +
-    //     '</div>' +
-    //   '</div>' +
-    //
-    //   '<div id="location_image" class="ui segment">' +
-    //     '<img src="' + data.image + '" alt="" />' +
-    //   '</div>' +
-    //
-    // '</div>' +
-    //
-    // '<div class="ui horizontal segments">' +
-    //
-    //   '<div id="location_address" class="ui segment">' +
-    //     data.address +
-    //   '</div>' +
-    //   '<div id="location_hours" class="ui segment">' +
-    //     '<p>' + data.hours[0].days + '</p>' +
-    //     '<p>Opens: ' + data.hours[0].opening + '</p>' +
-    //     '<p>Closes: ' + data.hours[0].closing + '</p>' +
-    //   '</div>' +
-    //   '<div id="location_phone" class="ui segment">' +
-    //     data.phone +
-    //   '</div>';
+    var infowindow = new google.maps.InfoWindow();
+    var content = saveURL;
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">' + data.name + '</h1>'+
+      '<div id="address">'+
+      '<p>' + data.address + '</p>' +
+      '<p>' + data.burgers[0].name + '</p>' +
+      '<p>Rating: ' + data.burgers[0].rating + ' out of 4</p>' +
+      '<p><img src="' + data.burgers[0].image + '" alt="" /></p>' +
+      '<input type="button" value="Button">';
+
+    var content = '<div class="ui horizontal segments">' +
+      '<div class="ui segments">' +
+        '<h1 id="location_name" class="ui segment">' + data.name +
+        '</h1>' +
+        '<input type="button" onclick="window.location=\'/location/detail\';" value="Details">' +
+        '<div id="location_price" class="ui segment">' +
+          '<div id="location_price" class="zero_dollar price">$</div>' +
+          '<div id="location_price" class="one_dollar price">$</div>' +
+          '<div id="location_price" class="two_dollar price">$</div>' +
+          '<div id="location_price" class="three_dollar price">$</div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div id="location_image" class="ui segment">' +
+        '<img src="' + data.image + '" alt="" />' +
+      '</div>' +
+
+    '</div>' +
+
+    '<div class="ui horizontal segments">' +
+
+      '<div id="location_address" class="ui segment">' +
+        data.address +
+      '</div>' +
+      '<div id="location_hours" class="ui segment">' +
+        '<p>' + data.hours[0].days + '</p>' +
+        '<p>Opens: ' + data.hours[0].opening + '</p>' +
+        '<p>Closes: ' + data.hours[0].closing + '</p>' +
+      '</div>' +
+      '<div id="location_phone" class="ui segment">' +
+        data.phone +
+      '</div>';
     //   <div id="location_website" class="ui segment">
     //     THIS WILL BE THE WEBSITE
     //   </div>

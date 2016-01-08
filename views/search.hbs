@@ -23,7 +23,7 @@
       var selection = this.value;
       selection = selection.toLowerCase();
       var criteria = {};
-      criteria[selection] = true;
+      criteria[selection] = "true";
       primary.style.display = "none";
 
       var xhr = new XMLHttpRequest();
@@ -48,6 +48,10 @@
           var second = document.getElementById('refined-search');
           second.appendChild(div);
           second.style.display = "block";
+          // add eventListener to the SearchButton when template is shown
+          document.getElementById('search-btn').addEventListener("click", function() {
+            getSearchCriteria(criteria);
+          });
           addDefaults(criteria);
         }
       };
@@ -67,20 +71,22 @@
         }
         this.classList.toggle("selected");
 
-        document.getElementById('search-btn').addEventListener("click", function() {
-          getSearchCriteria(obj);
-        });
+
       });
     }
   }
+
+
 
   var getSearchCriteria = function(obj) {
     var checkBtns = document.getElementsByClassName('defaults');
     for (var i = 0; i < checkBtns.length; i++) {
       obj[checkBtns[i].name] = checkBtns[i].value;
     }
+    console.log(obj);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/location/q", true);
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
     xhr.onload = function() {
       if (xhr.readyState != XMLHttpRequest.DONE) {
         return;
@@ -89,7 +95,7 @@
         setSession(xhr.responseText);
       }
     };
-    xhr.send(obj);
+    xhr.send(JSON.stringify(obj));
   };
   // This will set the session data and render the map
   var setSession = function(jason) {
