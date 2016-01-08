@@ -14,7 +14,7 @@ function addBurgerDetails(data) {
   var burger_view = $("#burger-template").html();
   var burger_template = _.template(burger_view);
   var compileTemplate = burger_template(burger);
-  $("#location_burgers").append(compileTemplate);
+  $("#burgerDetailOne").append(compileTemplate);
   // create underscore template for types of meat
   var meat_view = $("#meat-template").html();
   var meat_template = _.template(meat_view);
@@ -25,13 +25,7 @@ function addBurgerDetails(data) {
 };
 
 function showBurgerDetails(){
-  console.log('Burgers Belong Here');
-  $("#burgerzzz").click(function() {
-    // console.log('Clicks are fucking annoying');
-    // var modal = $(".ui.modal");
-    // console.log(modal);
-    $(".ui.modal").modal("show");
-  });
+
 }
 // console.log(location.burgers);
 //

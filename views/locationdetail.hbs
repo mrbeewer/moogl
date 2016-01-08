@@ -1,40 +1,39 @@
-<div class="ui stackable two column grid">
+<div class="locationHeader">
 
-  <div class="column">
-    <h1 id="location_name" class=""></h1>
-    <div id="location_price" class="">
-      <h4 id="location_price" class="zero_dollar price">$</h4>
-      <h4 id="location_price" class="one_dollar price">$</h4>
-      <h4 id="location_price" class="two_dollar price">$</h4>
-      <h4 id="location_price" class="three_dollar price">$</h4>
+  <div class="ui stackable one column grid">
+    <!-- information header -->
+    <!-- name and cost -->
+    <div class="column">
+      <h1 id="location_name" class="location_name"></h1>
+      <h2 class="zero_dollar price">$</h2>
+      <h2 class="one_dollar price">$</h2>
+      <h2 class="two_dollar price">$</h2>
+      <h2 class="three_dollar price">$</h2>
     </div>
-    <div id="location_address" class="column">
-      THIS WILL BE THE ADDRESS
+    <div class="row">
+
     </div>
+
   </div>
 
-  <div id="location_image" class="center aligned column">
-    THIS WILL BE THE IMAGE
+  <div class="second_header ui padded stackable three column divided grid" style="position: relative">
+    <!-- secondary information -->
+    <div class="four wide column">
+      <div id="location_phone"></div>
+      <div id="location_address"></div>
+      <div id="location_hours"></div>
+    </div>
+    <div class="twelve wide center aligned column middle aligned">
+      <h1 id="location_website"></h1>
+    </div>
+
   </div>
 
 </div>
 
-<div class="ui padded stackable three column divided grid" style="position: relative">
-
-  <h5 id="location_phone" class="column"></h5>
-
-  <div class="ui vertical divider"></div>
-
-  <h5 id="location_hours" class="column"></h5>
-
-  <div class="ui vertical divider"></div>
-
-  <h5 id="location_website" class="column"></h5>
-
-</div>
 
 <div class="ui stackable four column celled grid">
-
+  <!-- toggles -->
   <div class="row">
     <div class="four wide column">
       <button id="location_byob" class="fluid ui toggle button">BYOB</button>
@@ -45,7 +44,7 @@
     </div>
 
     <div class="four wide column">
-      <button  id="location_latenight" class="fluid ui toggle button">LATE NIGHT</button>
+      <button id="location_latenight" class="fluid ui toggle button">LATE NIGHT</button>
     </div>
 
     <div class="four wide column">
@@ -60,72 +59,67 @@
   <div class="ten wide column">
     <!-- secondary search criteria -->
     <div class="ui celled grid">
-      <div id="location_challenges" class="row">
 
+      <!-- BURGER ROW   -->
+      <div class="row">
         <div class="ten wide column">
-          CHALLENGES
-        </div>
-        <div class="six wide column">
-          <div id="location_foodtruck" class="yes">-</div>
-          <div id="location_foodtruck" class="no">-</div>
-        </div>
+          <!-- burger list -->
+          <div id="burger_list" class="burger_list ui items">
+<!--
 
-      </div>
-      <div id="location_allergies" class="row">
 
-        <div class="ten wide column">
-          ALLERGIES
-        </div>
-        <div class="six wide column">
-          <div id="location_foodtruck" class="yes">-</div>
-          <div id="location_foodtruck" class="no">-</div>
-        </div>
 
-      </div>
-      <!-- <div id="location_burgers" class="row"> -->
+WE ARE PUTTING ALL THE BURGERS HERE!
 
-        <div class="ten wide column">
-          <div id="burgerzzz">BURGERS
-            <div id="location_burgers" class="ui modal">
-              Extra Burger Copy
-              <script type='text/template' id="burger-template">
-                <ul>
-                  <li>Name: <%= name %></li>
-                  <li>Image: <%= image %></li>
-                  <li>Description: <%= description %></li>
-                  <div id="meat_list">
-                    <li>List of Meats:</li>
-                  </div>
-                  <li>Rating: <%= rating %></li>
-                  <li>Veggie: <%= veggie %></li>
-                </ul>
-              </script>
-            <script type="text/template" id="meat-template">
-              <ul>
-                <li>Angus: <%= angus %></li>
-                <li>Bison: <%= bison %></li>
-                <li>Elk: <%= elk %></li>
-                <li>Grassfed: <%= grassfed %></li>
-                <li>Kobe: <%= kobe %></li>
-                <li>Lamb: <%= lamb %></li>
-                <li>Turkey: <%= turkey %></li>
-            </script>
+
+
+ -->
           </div>
-        </div>
-        <div class="six wide column">
-          <div id="location_foodtruck" class="yes">-</div>
-          <div id="location_foodtruck" class="no">-</div>
-        </div>
+          <!-- end of burger list -->
 
+          <!-- THIS IS WHAT THE MODAL HTML IS APPENDED TO AND SHOWN ON CLICK OF A BURGER -->
+          <div id="burgerDetailOne" class="ui modal"></div>
+          <div id="burgerDetailTwo" class="ui modal"></div>
+          <div id="burgerDetailThree" class="ui modal"></div>
+          <!-- MODAL SHIT END -->
+
+
+        </div>
       </div>
+      <!-- END OF BURGER ROW -->
+      <!-- CHALLENGES ROW   -->
       <div id="location_sides" class="row">
 
-        <div class="ten wide column">
-          SIDES
+        <!-- FIRST ROW AFTER TOGGLES -->
+        <div class="column">
+          <button class="fluid ui active icon button">
+            <i class="food icon"></i> Sides
+          </button>
         </div>
-        <div class="six wide column">
-          <div id="location_foodtruck" class="yes">-</div>
-          <div id="location_foodtruck" class="no">-</div>
+
+
+      </div>
+      <!-- FIRST ROW END -->
+      <!-- SECOND ROW FOR ALLERGIES -->
+      <div id="location_challenges" class="row">
+
+        <div class="column">
+          <button class="fluid ui active icon button">
+            <i class="trophy icon"></i> Challenges
+          </button>
+        </div>
+
+      </div>
+
+
+      <!-- SECOND ROW END -->
+      <!-- LAST ROW FOR SIDES -->
+      <div id="location_allergies" class="row">
+
+        <div class="column">
+          <button class="fluid ui active icon button">
+            <i class="first aid icon"></i> Allergies
+          </button>
         </div>
 
       </div>
@@ -135,15 +129,125 @@
   </div>
   <!-- end of left column -->
 
-<div class="ui six wide column" style="background-color: grey">
-</div>
+  <div class="ui six wide column" style="background-color: lightgrey">
+  </div>
+
+
+  <!-- templates for underscore -->
+  <script type="text/template" id="burgerListItemOne-template">
+    <div id="burgerItemOne" class="item burgerItemOne">
+      <div class="image">
+        <img src=<%= image %> >
+      </div>
+      <div class="content">
+        <a class="header">
+          <%= name %>
+        </a>
+        <div class="meta">
+          <span>Description</span>
+        </div>
+        <div class="description">
+          <p>
+            <%= description %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/template" id="burgerListItemTwo-template">
+    <div id="burgerItemTwo" class="item burgerItemTwo">
+      <div class="image">
+        <img src=<%= image %> >
+      </div>
+      <div class="content">
+        <a class="header">
+          <%= name %>
+        </a>
+        <div class="meta">
+          <span>Description</span>
+        </div>
+        <div class="description">
+          <p>
+            <%= description %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/template" id="burgerListItemThree-template">
+    <div id="burgerItemThree" class="item burgerItemThree">
+      <div class="image">
+        <img src=<%= image %> >
+      </div>
+      <div class="content">
+        <a class="header">
+          <%= name %>
+        </a>
+        <div class="meta">
+          <span>Description</span>
+        </div>
+        <div class="description">
+          <p>
+            <%= description %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type='text/template' id="burger-template">
+    <ul>
+      <li>Name:
+        <%= name %>
+      </li>
+      <li>Image:
+        <%= image %>
+      </li>
+      <li>Description:
+        <%= description %>
+      </li>
+      <div id="meat_list">
+        <li>List of Meats:</li>
+      </div>
+      <li>Rating:
+        <%= rating %>
+      </li>
+      <li>Veggie:
+        <%= veggie %>
+      </li>
+    </ul>
+  </script>
+
+  <script type="text/template" id="meat-template">
+    <ul>
+      <li>Angus:
+        <%= angus %>
+      </li>
+      <li>Bison:
+        <%= bison %>
+      </li>
+      <li>Elk:
+        <%= elk %>
+      </li>
+      <li>Grassfed:
+        <%= grassfed %>
+      </li>
+      <li>Kobe:
+        <%= kobe %>
+      </li>
+      <li>Lamb:
+        <%= lamb %>
+      </li>
+      <li>Turkey:
+        <%= turkey %>
+      </li>
+  </script>
 
 
 
-
-
-
-<script src="/javascripts/location_ajax.js"></script>
-<script src="/javascripts/location_detail.js"></script>
-<script src="/javascripts/burger_detail.js">
-</script>
+  <script src="/javascripts/location_ajax.js"></script>
+  <script src="/javascripts/location_detail.js"></script>
+  <script src="/javascripts/burger_detail.js">
+  </script>
