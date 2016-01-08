@@ -33,7 +33,7 @@
 </div>
 
 
-<div class="ui stackable four column celled grid">
+<div class="ui celled grid">
   <!-- toggles -->
   <div class="row">
     <div class="four wide column">
@@ -51,8 +51,8 @@
     <div class="four wide column">
       <button id="location_outdoor" class="fluid ui toggle button">OUTDOOR</button>
     </div>
-  </div>
 
+  </div>
 </div>
 
 <div class="ui stackable grid">
@@ -114,7 +114,7 @@ WE ARE PUTTING ALL THE BURGERS HERE!
 
 
       <!-- SECOND ROW END -->
-      <!-- LAST ROW FOR SIDES -->
+      <!-- THIRD ROW FOR SIDES -->
       <div id="location_allergies" class="row">
 
         <div class="column">
@@ -125,6 +125,21 @@ WE ARE PUTTING ALL THE BURGERS HERE!
 
       </div>
 
+      <!-- THIRD ROW END -->
+      <!-- LAST ROW FOR VEGGIES -->
+      <div id="location_veggies" class="row">
+
+        <div class="column">
+          <button class="fluid ui active icon button">
+            <i class="leaf icon"></i> Veggies
+          </button>
+        </div>
+
+      </div>
+
+
+
+
     </div>
     <!-- end of secondary search criteria -->
   </div>
@@ -132,6 +147,13 @@ WE ARE PUTTING ALL THE BURGERS HERE!
 
   <div class="ui six wide column" style="background-color: lightgrey">
   </div>
+
+
+  <a href="104.131.68.13:3000/location/map"><button type="button" class="ui labeled icon button" id="mapReturn">
+    <i class="left arrow icon"></i>
+    Back to Map
+    </button>
+  </a>
 
 
   <!-- templates for underscore -->
@@ -207,7 +229,7 @@ WE ARE PUTTING ALL THE BURGERS HERE!
         <img id="burgerImage" class="ui rounded medium image" src=<%= image %> >
         <div class="description">
         <h3><%= description %></h3>
-        <p><strong>Veggie Option:</strong><%= veggie %></p>
+        <p><strong>Veggie Option: </strong><%= veggie %></p>
         <p><strong>Meat Options:</strong></p>
         <p><div id="meat_list"></div></p>
       </div>
