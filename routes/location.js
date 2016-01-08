@@ -131,7 +131,7 @@ router.post('/set-session', function(req, res, next) {
   req.session.search = req.body;
   console.log("session saved");
   console.log(req.session.search);
-  res.redirect('/location/map');
+  res.render('map');
 });
 
 router.get('/get-session', function(req, res, next) {

@@ -10,13 +10,11 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 // var FacebookStrategy = require('passport-facebook').Strategy;
 // but before the db is loaded
-// var cookieSession = require('cookie-session');
-// var cookieParser = require('cookie-parser');
-var app = express();
-// app.use(express.cookieParser('B33l3r'));
-// app.use(express.cookieSession());
-// app.use(app.router);
 
+var app = express();
+
+app.use(bodyParser.urlencoded({limit: '50mb'}));
+app.use(bodyParser.json({limit: '50mb'}));
 require("./db/database");
 
 var index = require('./routes/index');
