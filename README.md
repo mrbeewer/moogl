@@ -127,7 +127,7 @@
   npm install
   # install dependencies
 
-  mongoimport --db moogl --collection searches --type json --file ~/moogl/db/seeds/SearchesSeed.json --jsonArray
+  mongoimport --db moogl --collection searches --type json --file ~/moogl/db/seeds/SearchSeed.json --jsonArray
   # Run in terminal, not mongo!!
 
   mongoimport --db moogl --collection locations --type json --file ~/moogl/db/seeds/LocationsSeed.json --jsonArray
