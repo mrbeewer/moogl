@@ -22,8 +22,9 @@
       var primary = document.getElementById('primary-search');
       var selection = this.value;
       selection = selection.toLowerCase();
+
       var criteria = {};
-      criteria[selection] = true;
+      criteria[selection] = "true";
       primary.style.display = "none";
 
       var xhr = new XMLHttpRequest();
@@ -48,6 +49,10 @@
           var second = document.getElementById('refined-search');
           second.appendChild(div);
           second.style.display = "block";
+          document.getElementById('search-btn').addEventListener("click", function() {
+            getSearchCriteria(criteria);
+          });
+          getExtraCriteria(criteria);
           addDefaults(criteria);
         }
       };
@@ -66,10 +71,6 @@
           this.value = true;
         }
         this.classList.toggle("selected");
-
-        document.getElementById('search-btn').addEventListener("click", function() {
-          getSearchCriteria(obj);
-        });
       });
     }
   }
@@ -107,46 +108,107 @@
     };
     xhr.send(jason);
   };
+
+  var getExtraCriteria = function(selection) {
+    var parent = document.getElementById('defaults-cont');
+    var primeSearch = Object.keys(selection)[0];
+    if (primeSearch == "allergies") {
+      var newDiv = createDiv();
+      var newBtn = createBtn();
+      newBtn.innerHTML = "Gluten Free";
+      newDiv.appendChild(newBtn);
+      parent.appendChild(newDiv);
+    } else if (primeSearch == "meats") {
+      var arr = ["Grassfed", "Kobe", "Bison", "Angus", "Turkey", "Lamb", "Elk"];
+      for (var i = 0; i < arr.length; i++) {
+        var newDiv = createDiv();
+        var newBtn = createBtn();
+        newBtn.innerHTML = arr[i];
+        newBtn.name = arr[i].toLowerCase();
+        newBtn.value = false;
+        newDiv.appendChild(newBtn);
+        parent.appendChild(newDiv);
+      }
+    } else if (primeSearch == "sides") {
+      var arr = ["duckFries", "macAndCheese", "tots"];
+      for (var i = 0; i < arr.length; i++) {
+        var newDiv = createDiv();
+        var newBtn = createBtn();
+        switch (arr[i]) {
+          case "duckFries":
+            newBtn.innerHTML = "Duck Fat Fries";
+            break;
+          case "macAndCheese":
+            newBtn.innerHTML = "Mac & Cheese";
+            break;
+          case "tots":
+            newBtn.innerHTML = "Tater Tots";
+            break;
+        }
+        newBtn.name = arr[i];
+        newBtn.value = false;
+        newDiv.appendChild(newBtn);
+        parent.appendChild(newDiv);
+      }
+    }
+
+  };
+  var createDiv = function() {
+    var div = document.createElement('div');
+    div.classList.add("column");
+    div.classList.add("center");
+    div.classList.add("aligned");
+    return div;
+  };
+
+  var createBtn = function() {
+    var btn = document.createElement('button');
+    btn.classList.add("circular");
+    btn.classList.add("ui");
+    btn.classList.add("button");
+    btn.classList.add("defaults");
+    return btn;
+  };
 </script>
 
 
 <script type="text/template" id="refined-search-template">
 
-  <img id="search-img" class="ui raised segment" src="<%= imageURL %>" alt="" id="detailSearchImg"/>
-  <div id="title" class="ui raised segment">
+  <img id="search-img" class="ui segment" src="<%= imageURL %>" alt="" id="detailSearchImg"/>
+  <div id="title" class="ui segment">
     <h1> <%= name %> </h1>
   </div>
   <!-- <hr> -->
-  <div id="search-desc" class="ui raised segments">
+  <div id="search-desc" class="ui segments">
     <p>
       <%= description %>
     </p>
   </div>
-  <div class="ui raised segment">
+  <div class="ui segment">
   <div id="defaults-cont" class="ui stackable four column grid">
     <div class="column center aligned">
-      <button class="circular ui toggle button defaults" name="alcohol" value="false">
+      <button class="circular ui button defaults" name="alcohol" value="false">
         Alcohol
       </button>
     </div>
     <div class="column center aligned">
-      <button class="circular ui toggle button defaults" name="byob" value="false">
+      <button class="circular ui button defaults" name="byob" value="false">
         B.Y.O.B.
       </button>
     </div>
     <div class="column center aligned">
-      <button class="circular ui toggle button defaults" name="latenight" value="false">
+      <button class="circular ui button defaults" name="latenight" value="false">
         Open late
       </button>
     </div>
     <div class="column center aligned">
-      <button class="circular ui toggle button defaults" name="outdoor" value="false">
+      <button class="circular ui button defaults" name="outdoor" value="false">
         Outdoor Seating
       </button>
     </div>
   </div>
 </div>
-  <div class="ui raised segment">
+  <div class="ui segment">
     <button id="search-btn" class="ui button">Search</button>
   </div>
 </script>
