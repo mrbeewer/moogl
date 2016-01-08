@@ -127,7 +127,7 @@
   npm install
   # install dependencies
 
-  mongoimport --db moogl --collection searches --type json --file ~/moogl/db/seeds/SearchesSeed.json --jsonArray
+  mongoimport --db moogl --collection searches --type json --file ~/moogl/db/seeds/SearchSeed.json --jsonArray
   # Run in terminal, not mongo!!
 
   mongoimport --db moogl --collection locations --type json --file ~/moogl/db/seeds/LocationsSeed.json --jsonArray
@@ -151,9 +151,9 @@
 * Backbone + Single Page Application
 * David Beeler
 
-[Martin Ryan](https://github.com/martin-ryan) - Git Leader
-[Jeff Steed](https://github.com/jeffsteed) - SCRUM Master
-[Katie Ude](https://github.com/KatieUde)
-[David Beeler](https://github.com/mrbeewer)
+[Martin Ryan](https://github.com/martin-ryan) - Git Leader <br>
+[Jeff Steed](https://github.com/jeffsteed) - SCRUM Master <br>
+[Katie Ude](https://github.com/KatieUde) <br>
+[David Beeler](https://github.com/mrbeewer) <br>
 
 January 8, 2016
