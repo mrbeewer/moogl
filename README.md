@@ -6,19 +6,17 @@
 
 ### Screenshots:
 <p align="center">
-  <img src="" alt="moogl"/>
+  <img width="400px" src="https://github.com/Beelers-Blockers/moogl/blob/NoBackbone/screenshots/moogl-home.png" alt="moogl - Home View"/>
   <br>
-  <img width="400px" src="https://github.com/Beelers-Blockers/moogl/blob/master/screenshots/moogl-home.png" alt="moogl - Home View"/>
+  <img width="400px" src="https://github.com/Beelers-Blockers/moogl/blob/NoBackbone/screenshots/moogl-secondaryRefinementWChoices.png" alt="moogl - Secondary Refinement With Choices View"/>
   <br>
-  <img width="400px" src="https://github.com/Beelers-Blockers/moogl/blob/master/screenshots/moogl-secondaryRefinementWChoices.png" alt="moogl - Secondary Refinement With Choices View"/>
+  <img width="400px" src="https://github.com/Beelers-Blockers/moogl/blob/NoBackbone/screenshots/moogl-mapWPins.png"  alt="moogl - Map With Pins / Locations View"/>
   <br>
-  <img width="400px" src="https://github.com/Beelers-Blockers/moogl/blob/master/screenshots/moogl-mapWPins.png"  alt="moogl - Map With Pins / Locations View"/>
+  <img width="400px" src="https://github.com/Beelers-Blockers/moogl/blob/NoBackbone/screenshots/moogl-mapWDetails.png"  alt="moogl - Map With Location Detail (small) View"/>
   <br>
-  <img width="400px" src="https://github.com/Beelers-Blockers/moogl/blob/master/screenshots/moogl-mapWDetails.png"  alt="moogl - Map With Location Detail (small) View"/>
+  <img width="400px" src="https://github.com/Beelers-Blockers/moogl/blob/NoBackbone/screenshots/moogl-LocationDetails.png"  alt="moogl - Location Detail View"/>
   <br>
-  <img width="400px" src="https://github.com/Beelers-Blockers/moogl/blob/master/screenshots/moogl-LocationDetails.png"  alt="moogl - Location Detail View"/>
-  <br>
-  <img width="400px" src="https://github.com/Beelers-Blockers/moogl/blob/master/screenshots/moogl-BurgerDetail.png"  alt="moogl - Burger Detail View"/>
+  <img width="400px" src="https://github.com/Beelers-Blockers/moogl/blob/NoBackbone/screenshots/moogl-BurgerDetail.png"  alt="moogl - Burger Detail View"/>
 </p>
 
 ### Technology:
@@ -52,11 +50,11 @@
   * Standard MVC:
     * After deciding that we were not going to be able to develop a single page application to the standards we desired, we returned to the basic buildout with routing. To facilitate the development, we broke into pairs focusing on different aspects.
     * Marty and Katie
-      * Focus on Design and the Location / Burger Detail pages that auto populate based on returned JSON.
-    * Jeff  and David
-      * Focus on Search Criteria Views and Map Populating / Search Routing
-  * Bugs / Polish
-    * asfsf
+      * Overall Design and Semantic implementation
+      * Location / Burger Detail pages with auto-population based on returned JSON.
+    * Jeff and David
+      * Search Criteria Views
+      * Map Populating / Search Routing
 
 
 ### Installation: UPDATE ME DAVID!!
@@ -64,14 +62,16 @@
 * *Git* the files
   * Fork the repository and `git clone` to your local system
 * Setting up the Database
-  * Required: Postgresql (http://www.postgresql.org/)
-  * Run the commands in `migration.sql` -> `db/migrations.sql` to initialize the DB and tables
-  * Run the commands in `seed.sql` -> `db/migrations.sql` to create the default profile image
-* Preparing for a HTTParty
-  * Within the root `thoughtful` folder, run `bundle` from the terminal. This will prepare/install the necessary gems for this project. If they are all successful, continue on...
-  * Again from the root `thoughtful` folder, run `bundle exec rackup` to start this HTTParty!
+  * Required: MongoDB (https://www.mongodb.org/)
+  * HIGHLY Recommended: MongoHub (https://github.com/jeromelebel/MongoHub-Mac)
+  * Within MongoHub:
+    * Create `moogl` Database, `locations` Collection, `searches` Collection
+    * Add data -> Double click on the collection (opens the query), click on Insert, and copy the contents of `db/seeds/LocationSeed.json` and `db/seeds/SearchSeed.json` appropriately
+* Install
+  * Within the root `moogl` folder, run `npm install` from the terminal. This will prepare/install the necessary dependencies for this project. If they are all successful, continue on...
+  * Again from the root `moogl` folder, run `npm start` to start the server.
 * Check it out
-  * In your favorite browser, go to `localhost:9292`
+  * In your favorite browser, go to `localhost:3000`
 
 **Install on Digital Ocean**
 * Create Droplet
@@ -87,64 +87,73 @@
   * Enter the provided password (twice) and setup a new password
   Use the following commands
   ```
+  sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+  # Add the MongoDB team's key to the list of trusted keys
+
+  echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+  # Add reference to the repository to our `apt` configuration
+
   apt-get update
   # updates the list of software our server knows about
 
-  apt-get install ruby-dev -Y
-  # installs the tools we need for a ruby environment
+  apt-get install mongodb-org git build-essential openssl libssl-dev pkg-config
+  # Install MongoDB packages, git, and dependencies (Y x1)
 
-  apt-get install build-essential -Y
-  # essential build tools such as GCC
+  git clone https://github.com/Beelers-Blockers/moogl.git
+  # clone down the repo with the correct URL (use HTTPS)
 
-  apt-get install git -Y
-  # git for github
+  wget https://nodejs.org/dist/v4.2.4/node-v4.2.4.tar.gz
+  # download Node.js source code
 
-  # postgres database
-  apt-get install postgresql -Y
-  apt-get install postgresql-contrib -Y  
-  apt-get install libpq-dev
-  gem install pg
+  tar xzvf node-v
+  # extract the archive
 
-  # create a user
-  createdb $USER
-  touch ~/.psql_history
+  cd node-v*
+  # move into the node director
 
-  # gems
-  apt-get install ruby -y
-  gem install json
-  gem install bundler
-  gem install sinatra
-  gem install httparty
-  gem install dotenv
+  ./configure
+  make
+  # configure and build Node (takes while! ~30min?)
+
+  make install
+  # install Node
+
+  rm -rf ~/node-v*
+  # remove the source code and directory (clean it up!)
+
+  cd moogl
+  # change directory
+
+  npm install
+  # install dependencies
+
+  mongoimport --db moogl --collection searches --type json --file ~/moogl/db/seeds/SearchSeed.json --jsonArray
+  # Run in terminal, not mongo!!
+
+  mongoimport --db moogl --collection locations --type json --file ~/moogl/db/seeds/LocationsSeed.json --jsonArray
+  # Run in terminal
+
+  npm start
+  # run the server and test with IP.IP.IP.IP:3000
+
+  npm install -g forever
+  # install Forever globally
+
+  cd moogl
+  # move to the moogl folder if not there already
+
+  forever start --minUptime 1000 --spinSleepTime 1000 ./bin/www
+  # start the server and keep it running
   ```
-  * From the terminal, we need to create a `.env` file that holds the API and database name
-    * send the command `touch .env` to create the file
-    * send the command `nano .env` to open the file in the command-line editor
-    * Set your keys names appropriately like below
-      ```
-      PIXABAY_API_KEY="api-key-here"
-      QUOTE_API_KEY="api-key-here"
-      DB_name="database_name"
-      ```
-  * From github, fork to your repositories and `git clone` the repository to the server (use the HTTP link)
-  * Setting up the Database
-    * Required: [Postgresql](http://www.postgresql.org/)
-    * Run the commands in `migration.sql` -> `db/migrations.sql` to initialize the DB and tables
-    * Run the commands in `seed.sql` -> `db/migrations.sql` to create the default profile image
-  * Preparing for a HTTParty
-    * Within the root `thoughtful` folder, run `bundle` from the terminal. This will prepare/install the necessary gems for this project. If they are all successful, continue on...
-    * Again from the root `thoughtful` folder, run `bundle exec rackup -p 80 --host 0.0.0.0` to start this HTTParty!
-  * Check it out
-    * In your favorite browser, go to the IP address provided by DigitalOcean!
-    * To keep the server running after disconnecting, run `nohup bundle exec rackup -p 80 --host 0.0.0.0`
 
 
 ### Unsolved Problems:
-* Add some stuff
+* Backbone + Single Page Application
+* David Beeler
 
-[Martin Ryan](https://github.com/mrbeewer) - Git Leader
-[Jeff Steed](https://github.com/mrbeewer) - SCRUM Master
-[Katie Ude](https://github.com/mrbeewer)
-[David Beeler](https://github.com/mrbeewer)
+[Martin Ryan](https://github.com/martin-ryan) - Git Leader <br>
+[Jeff Steed](https://github.com/jeffsteed) - SCRUM Master <br>
+[Katie Ude](https://github.com/KatieUde) <br>
+[David Beeler](https://github.com/mrbeewer) <br>
 
 January 8, 2016

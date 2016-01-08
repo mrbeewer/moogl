@@ -23,8 +23,8 @@ make` - configure and build the software (takes while! ~30min?)
   * `rm -rf ~/node-v*` - remove the source code and directory (clean it up!)
   * `cd moogl` - change directory
   * `npm install` - install dependencies
-  * `mongoimport --db moogl --collection searches --type json --file ~/moogl/db/seeds/SearchesSeed.json --jsonArray` - Run in terminal, not mongo!!
-  * `mongoimport --db moogl --collection locations --type json --file ~/moogl/db/seeds/LocationsSeed.json` - Run in terminal, no --jsonArray, different format
+  * `mongoimport --db moogl --collection searches --type json --file ~/moogl/db/seeds/SearchSeed.json --jsonArray` - Run in terminal, not mongo!!
+  * `mongoimport --db moogl --collection locations --type json --file ~/moogl/db/seeds/LocationsSeed.json --jsonArray` - Run in terminal, no --jsonArray, different format
   * `npm start` - run the server
   * URL -> IP:3000 to Test
   * `npm install -g forever` - install Forever
