@@ -121,7 +121,7 @@ router.get('/map', function(req, res, next) {
 });
 
 router.get('/set-session/:id', function(req, res, next) {
-  req.session.search = req.params.id;
+  req.session.locationID = req.params.id;
   console.log("session saved");
   console.log(req.session.search);
   res.json({message: "data saved"});
