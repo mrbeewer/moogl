@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/detail', function(req, res, next) {
-  res.render('locationdetail');
+  res.render('locationdetail', {user : req.user});
 });
 
 
@@ -97,7 +97,7 @@ router.post('/q', function(req, res, next) {
 });
 
 router.get('/map', function(req, res, next) {
-  res.render('map');
+  res.render('map', {user : req.user});
 });
 
 router.post('/set-session/:id', function(req, res, next) {
@@ -111,7 +111,7 @@ router.post('/set-session', function(req, res, next) {
   req.session.search = req.body;
   console.log("session saved via req.body");
   // console.log(req.session.search);
-  res.render('map');
+  res.render('map', {user : req.user});
 });
 
 router.get('/get-session', function(req, res, next) {
