@@ -11,6 +11,10 @@ var LocalStrategy = require('passport-local').Strategy;
 // var FacebookStrategy = require('passport-facebook').Strategy;
 // but before the db is loaded
 
+var app = express();
+
+app.use(bodyParser.urlencoded({limit: '50mb'}));
+app.use(bodyParser.json({limit: '50mb'}));
 require("./db/database");
 
 var index = require('./routes/index');
@@ -19,13 +23,18 @@ var location = require('./routes/location');
 var search = require('./routes/search');
 
 
-var app = express();
+
 // instantly enable sessions
 app.use(require('express-session')({
-  secret: 'something secret', //kind of like your own salt
+  secret: 'BeelerBlocker', //kind of like your own salt
   resave: false,
   saveUninitialized: false
 }));
+// enable cookieSession
+// app.use(express.cookieSession({
+//   key: 'app.sess',
+//   secret: 'BeelerBlocker'
+// }));
 //
 app.use(passport.initialize());
 app.use(passport.session());
