@@ -20,7 +20,7 @@ function buildErrorResponse(err) {
 };
 
 router.get("/showme", function(req, res, next) {
-  res.render("search");
+  res.render("search", {user : req.user});
 });
 
 // GET all searches.

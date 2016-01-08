@@ -5,6 +5,7 @@
     <!-- name and cost -->
     <div class="column">
       <h1 id="location_name" class="location_name"></h1>
+      &nbsp;&nbsp;
       <h2 class="zero_dollar price">$</h2>
       <h2 class="one_dollar price">$</h2>
       <h2 class="two_dollar price">$</h2>
@@ -78,9 +79,9 @@ WE ARE PUTTING ALL THE BURGERS HERE!
           <!-- end of burger list -->
 
           <!-- THIS IS WHAT THE MODAL HTML IS APPENDED TO AND SHOWN ON CLICK OF A BURGER -->
-          <div id="burgerDetailOne" class="ui modal"></div>
-          <div id="burgerDetailTwo" class="ui modal"></div>
-          <div id="burgerDetailThree" class="ui modal"></div>
+          <div id="burgerDetailOne" class="ui modal small"></div>
+          <div id="burgerDetailTwo" class="ui modal small"></div>
+          <div id="burgerDetailThree" class="ui modal small"></div>
           <!-- MODAL SHIT END -->
 
 
@@ -197,28 +198,23 @@ WE ARE PUTTING ALL THE BURGERS HERE!
     </div>
   </script>
 
-  <script type='text/template' id="burger-template">
-    <ul>
-      <li>Name:
-        <%= name %>
-      </li>
-      <li>Image:
-        <%= image %>
-      </li>
-      <li>Description:
-        <%= description %>
-      </li>
-      <div id="meat_list">
-        <li>List of Meats:</li>
+<script type='text/template' id="burger-template">
+
+    <div class="ui header">
+    <h1><i class="food icon"></i><%= name %>&nbsp;<div class="ui star rating huge"></div></h1>
+    </div>
+    <div class="image content">
+        <img id="burgerImage" class="ui rounded medium image" src=<%= image %> >
+        <div class="description">
+        <h3><%= description %></h3>
+        <p><strong>Veggie Option:</strong><%= veggie %></p>
+        <p><strong>Meat Options:</strong></p>
+        <p><div id="meat_list"></div></p>
       </div>
-      <li>Rating:
-        <%= rating %>
-      </li>
-      <li>Veggie:
-        <%= veggie %>
-      </li>
-    </ul>
-  </script>
+    </div>
+  </div>
+
+</script>
 
   <script type="text/template" id="meat-template">
     <ul>
