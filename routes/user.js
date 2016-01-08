@@ -38,7 +38,7 @@ router.post('/register', function(req, res){
     }
     // passport.authenticate('local') is a function
     passport.authenticate('local')(req, res, function() {
-      res.redirect('/');
+      res.redirect('/search/showme');
     });
   });
 
