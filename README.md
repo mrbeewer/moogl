@@ -32,7 +32,7 @@
 
 ### Links:
 * [Wireframes and ERD](https://github.com/Beelers-Blockers/moogl/blob/master/screenshots/WireframeAndERD.svg)
-* [User Stories](?)
+* [User Stories](https://trello.com/b/aHJErc6U)
 * Live App - [thoughtful: be inspired](http://104.131.68.13:3000/)
 
 ### Approach: GROUP UPDATE!!!
