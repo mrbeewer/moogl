@@ -39,7 +39,7 @@ function updateLocationDetail(data){
 
   for (var i = 0; i < location.price; i++) {
 
-    priceArr[i].css("color","black");
+    priceArr[i].css("color","gold");
 
   };
   //
@@ -51,8 +51,10 @@ function updateLocationDetail(data){
   var compiled_burgerList = burgerListItemTemplate(location.burgers[0]);
   $("#burger_list").append(compiled_burgerList);
   $("#burgerItemOne").click(function() {
-    $("#burgerDetailOne.ui.modal").modal("show");
+    $("#burgerDetailOne.ui.modal.small").modal("show");
   });
+  addBurgerDetails(location.burgers, 0, $("#burgerDetailOne"));
+
   //
   if (burgersNumArr.length > 0) {
     var burgerListItemHTML = $("#burgerListItemTwo-template").html();
@@ -62,7 +64,7 @@ function updateLocationDetail(data){
     $("#burgerItemTwo").click(function() {
       $("#burgerDetailTwo.ui.modal").modal("show");
     });
-
+    addBurgerDetails(location.burgers, 1, $("#burgerDetailTwo"));
   }
   //
   if (burgersNumArr.length > 1) {
@@ -73,7 +75,7 @@ function updateLocationDetail(data){
     $("#burgerItemThree").click(function() {
       $("#burgerDetailThree.ui.modal").modal("show");
     });
-
+    addBurgerDetails(location.burgers, 2, $("#burgerDetailThree"));
   }
   //
 
@@ -88,7 +90,7 @@ function updateLocationDetail(data){
   location.challenges ? setYes("challenges") : setNo("challenges");
   location.allergies ? setYes("allergies") : setNo("allergies");
 
-  addBurgerDetails(location.burgers);
+
 
 };
 
