@@ -56,7 +56,7 @@ function updateLocationDetail(data){
   addBurgerDetails(location.burgers, 0, $("#burgerDetailOne"));
 
   //
-  if (burgersNumArr.length > 0) {
+  if (burgersNumArr.length > 1) {
     var burgerListItemHTML = $("#burgerListItemTwo-template").html();
     var burgerListItemTemplate = _.template(burgerListItemHTML);
     var compiled_burgerList = burgerListItemTemplate(location.burgers[1]);
@@ -67,7 +67,7 @@ function updateLocationDetail(data){
     addBurgerDetails(location.burgers, 1, $("#burgerDetailTwo"));
   }
   //
-  if (burgersNumArr.length > 1) {
+  if (burgersNumArr.length > 2) {
     var burgerListItemHTML = $("#burgerListItemThree-template").html();
     var burgerListItemTemplate = _.template(burgerListItemHTML);
     var compiled_burgerList = burgerListItemTemplate(location.burgers[2]);
