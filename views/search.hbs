@@ -110,6 +110,7 @@
         return;
       }
       if (xhr.status == 200) {
+        console.log(xhr.responseText);
         setSession(xhr.responseText);
       }
     };

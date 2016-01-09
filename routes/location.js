@@ -52,15 +52,23 @@ router.get('/detail/data', function(req, res, next) {
 router.post('/q', function(req, res, next) {
   // JSON object sent are search terms
   console.log("==============");
-  console.log(req);
+  // console.log(req);
   console.log(req.body);
-  var search = req.body;
+  var search = (req.body);
+  for (var term in search) {
+    if (search.hasOwnProperty(term)) {
+      search[term] = true;
+    };
+  };
   console.log(search);
   // query database by the JSON
   model.find(search,function(err, locations) {
     if (err) {
       res.json(buildErrorResponse(err));
     } else {
+      console.log("==============");
+      console.log("==============");
+      console.log(locations);
       res.json(locations);
     }
   });
@@ -83,7 +91,7 @@ router.post('/set-session/:id', function(req, res, next) {
 router.post('/set-session', function(req, res, next) {
   req.session.search = req.body;
   console.log("session saved via req.body");
-  // console.log(req.session.search);
+  console.log(req.session.search);
   res.render('map', {user : req.user});
 });
 

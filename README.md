@@ -151,6 +151,7 @@
 
 ### Unsolved Problems:
 * Backbone + Single Page Application
+* Searching by Cost and Popularity (specifically sending in the query hasn't been implemented. Not specifically a problem)
 * David Beeler
 
 [Martin Ryan](https://github.com/martin-ryan) - Git Leader <br>
