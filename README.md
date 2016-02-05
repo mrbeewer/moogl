@@ -34,7 +34,7 @@
 ### Links:
 * [Wireframes and ERD](https://github.com/Beelers-Blockers/moogl/blob/master/screenshots/WireframeAndERD.svg)
 * [User Stories](https://trello.com/b/aHJErc6U)
-* Live App - [thoughtful: be inspired](http://104.131.68.13:3000/)
+* Live App - [moogl](http://104.131.68.13:3000/)
 
 ### Approach:
 * Planning Phase
